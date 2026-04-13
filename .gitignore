@@ -1,0 +1,34 @@
+# --- Dipendenze e Output Angular ---
+node_modules/
+/dist/
+/tmp/
+/out-tsc/
+/.angular/cache/
+
+# --- Dipendenze e Output .NET ---
+bin/
+obj/
+appsettings.Development.json
+*.exe
+*.dll
+*.pdb
+
+# --- SQLite ---
+# Ignoriamo il file del database locale se non vuoi caricarlo su Git
+*.db
+*.db-shm
+*.db-wal
+
+# --- IDE e Editor ---
+.vscode/
+.idea/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+# --- Log e System ---
+npm-debug.log
+yarn-error.log
+.DS_Store
+Thumbs.db
