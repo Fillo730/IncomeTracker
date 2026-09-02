@@ -35,18 +35,19 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<IncomeType>().HasData(
             new IncomeType { Id = 1, Key = "TUTORING" },
-            new IncomeType { Id = 2, Key = "OTHER" }
+            new IncomeType { Id = 3, Key = "OTHER" },
+            new IncomeType { Id = 4, Key = "SALARY" }
         );
 
         modelBuilder.Entity<IncomeTypeTranslation>().HasData(
             new IncomeTypeTranslation { Id = 1, IncomeTypeId = 1, LanguageId = 1, Name = "Ripetizioni" },
             new IncomeTypeTranslation { Id = 2, IncomeTypeId = 1, LanguageId = 2, Name = "Tutoring" },
-            
-            new IncomeTypeTranslation { Id = 3, IncomeTypeId = 2, LanguageId = 1, Name = "Traslochi" },
-            new IncomeTypeTranslation { Id = 4, IncomeTypeId = 2, LanguageId = 2, Name = "Moving" },
-            
+
             new IncomeTypeTranslation { Id = 5, IncomeTypeId = 3, LanguageId = 1, Name = "Altro" },
-            new IncomeTypeTranslation { Id = 6, IncomeTypeId = 3, LanguageId = 2, Name = "Other" }
+            new IncomeTypeTranslation { Id = 6, IncomeTypeId = 3, LanguageId = 2, Name = "Other" },
+
+            new IncomeTypeTranslation { Id = 7, IncomeTypeId = 4, LanguageId = 1, Name = "Stipendio" },
+            new IncomeTypeTranslation { Id = 8, IncomeTypeId = 4, LanguageId = 2, Name = "Salary" }
         );
     }
 }
