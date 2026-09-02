@@ -1,7 +1,14 @@
 .pager-wrapper {
-  background-color: var(--background-card);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-start);
+  background-color: var(--bg-lighter);
   margin-top: 1.5rem;
+
+  --mat-paginator-container-background-color: var(--bg-lighter);
+  --mat-paginator-container-text-color: var(--text);
+  --mat-paginator-enabled-icon-color: var(--text);
+  --mat-paginator-disabled-icon-color: var(--border-end);
+  --mat-select-enabled-trigger-text-color: var(--text);
+}
+
+.pager-wrapper mat-paginator {
+  background-color: transparent;
 }

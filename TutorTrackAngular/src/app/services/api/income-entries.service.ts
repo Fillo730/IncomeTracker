@@ -63,12 +63,12 @@ export class IncomeService {
     return this.http.post<ApiResponse<any>>(this.apiUrl, entry);
   }
 
-  public updateIncome(entry: any): Observable<ApiResponse<any>> {
-    return this.http.post<ApiResponse<any>>(this.apiUrl, entry);
+  public updateIncome(id: number, entry: any): Observable<ApiResponse<any>> {
+    return this.http.put<ApiResponse<any>>(`${this.apiUrl}/${id}`, entry);
   }
 
-  public deleteIncome(entry: any): Observable<ApiResponse<any>> {
-    return this.http.post<ApiResponse<any>>(this.apiUrl, entry);
+  public deleteIncome(id: number): Observable<ApiResponse<any>> {
+    return this.http.delete<ApiResponse<any>>(`${this.apiUrl}/${id}`);
   }
 
   private applyFilters(params: HttpParams, filter: IncomesFilter): HttpParams {

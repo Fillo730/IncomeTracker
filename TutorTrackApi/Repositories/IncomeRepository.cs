@@ -53,6 +53,25 @@ public class IncomeRepository (AppDbContext context) : IIncomeRepository
         await _context.IncomeEntries.AddAsync(entry);
     }
 
+    public async Task<IncomeEntry?> GetByIdAsync(int id)
+    {
+        return await _context.IncomeEntries.FindAsync(id);
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        var entity = await _context.IncomeEntries.FindAsync(id);
+
+        if (entity is null)
+        {
+            return false;
+        }
+
+        _context.IncomeEntries.Remove(entity);
+
+        return true;
+    }
+
     public async Task<double> GetIncomeForMonth(int year, int month)
     {
         return await _context.IncomeEntries

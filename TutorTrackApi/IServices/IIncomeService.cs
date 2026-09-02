@@ -14,6 +14,8 @@ public interface IIncomeService
     Task<double> GetIncomeForMonth(int year, int month);
     Task<double> GetHoursWorkedForMonth(int year, int month);
     Task<bool> CreateIncomeAsync(IncomeEntryDto entry);
+    Task<bool> UpdateIncomeAsync(int id, IncomeEntryDto entry);
+    Task<bool> DeleteIncomeAsync(int id);
     Task<IEnumerable<IncomeTypeDto>> GetIncomeTypesAsync(string lang);
     Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryAsync(int year, int month, string lang);
 }

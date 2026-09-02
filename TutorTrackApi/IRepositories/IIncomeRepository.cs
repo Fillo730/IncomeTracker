@@ -8,6 +8,8 @@ public interface IIncomeRepository
 {
     Task<(IEnumerable<IncomeEntry> Items, int TotalCount)> GetAllAsync(string lang, int pageSize, int pageNumber, IncomesFilterDto filters);
     Task AddAsync(IncomeEntry entry);
+    Task<IncomeEntry?> GetByIdAsync(int id);
+    Task<bool> DeleteAsync(int id);
     Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryAsync(int year, int month, string lang);
     Task<IEnumerable<IncomeType>> GetAllIncomeTypes (string lang);
     Task<IncomeType?> GetIncomeTypeByKeyAsync(string key);

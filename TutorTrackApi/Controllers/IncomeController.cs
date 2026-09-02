@@ -135,4 +135,48 @@ public async Task<ActionResult> GetPaged(
                 AppStatusCode.DatabaseError, ex.Message));
         }
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Update(int id, [FromBody] IncomeEntryDto entry)
+    {
+        try
+        {
+            var success = await _incomeService.UpdateIncomeAsync(id, entry);
+
+            if (!success)
+            {
+                return Ok(ApiResponse<IncomeEntryDto>.Fail(
+                    AppStatusCode.ValidationError, "I dati dell'entrata non sono validi"));
+            }
+
+            return Ok(ApiResponse<IncomeEntryDto>.Ok(entry, "Entrata aggiornata con successo"));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<IncomeEntryDto>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        try
+        {
+            var success = await _incomeService.DeleteIncomeAsync(id);
+
+            if (!success)
+            {
+                return Ok(ApiResponse<bool>.Fail(
+                    AppStatusCode.ValidationError, "Entrata non trovata"));
+            }
+
+            return Ok(ApiResponse<bool>.Ok(true, "Entrata eliminata con successo"));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<bool>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
 }

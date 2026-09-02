@@ -16,6 +16,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding-bottom: 96px;
 }
 
 .grow {
@@ -27,9 +28,19 @@
 
 .fab-add {
   position: fixed;
-  bottom: 24px;
+  top: 24px;
   right: 24px;
   z-index: 100;
+}
+
+.pager-fixed {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  z-index: 90;
 }
 
 .incomes-list {
@@ -54,7 +65,7 @@
 }
 
 .total-chip {
-  background-color: var(--background-card) !important;
+  background-color: var(--card-bg) !important;
   border: 1px solid var(--border-start) !important;
   color: var(--text) !important;
 }

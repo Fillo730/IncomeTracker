@@ -160,7 +160,7 @@ export class AddEntryPage implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.incomeService.updateIncome(result).subscribe(res => {
+        this.incomeService.updateIncome(income.id, result).subscribe(res => {
           if (res.success) {
             this.loadData();
             this.toastService.success(this.translate.instant('Incomes.Messages.UpdateSuccess'));

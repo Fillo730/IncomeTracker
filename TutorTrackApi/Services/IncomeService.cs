@@ -42,6 +42,47 @@ public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper inc
         return true;
     }
 
+    public async Task<bool> UpdateIncomeAsync(int id, IncomeEntryDto entry)
+    {
+        var existing = await _incomeRepository.GetByIdAsync(id);
+
+        if (existing is null)
+        {
+            return false;
+        }
+
+        var incomeType = await _incomeRepository.GetIncomeTypeByKeyAsync(entry.CategoryKey);
+
+        if (incomeType is null)
+        {
+            return false;
+        }
+
+        existing.Description = entry.Description;
+        existing.Amount = (decimal)entry.Amount;
+        existing.Hours = entry.Hours;
+        existing.Date = entry.Date;
+        existing.IncomeTypeId = incomeType.Id;
+
+        await _incomeRepository.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task<bool> DeleteIncomeAsync(int id)
+    {
+        var deleted = await _incomeRepository.DeleteAsync(id);
+
+        if (!deleted)
+        {
+            return false;
+        }
+
+        await _incomeRepository.SaveChangesAsync();
+
+        return true;
+    }
+
     public async Task<double> GetIncomeForMonth(int year, int month)
     {
         return await _incomeRepository.GetIncomeForMonth(year, month);
