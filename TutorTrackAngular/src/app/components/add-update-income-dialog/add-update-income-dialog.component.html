@@ -24,7 +24,7 @@
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Category" | translate }}</mat-label>
-        <mat-select [(ngModel)]="incomeUpdate.type">
+        <mat-select [(ngModel)]="incomeUpdate.categoryKey">
             @for (cat of data.categories; track cat.key) {
                 <mat-option [value]="cat.key">
                     {{ "Incomes.Types." + cat.key | translate }}
@@ -43,7 +43,7 @@
     <button mat-button (click)="onNoClick()">
         {{ "Incomes.Dialog.Buttons.Cancel" | translate }}
     </button>
-    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!incomeUpdate.amount || !incomeUpdate.type">
+    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!incomeUpdate.amount || !incomeUpdate.categoryKey">
         {{ (incomeUpdate.id ? "Incomes.Dialog.Buttons.Update" : "Incomes.Dialog.Buttons.Save") | translate }}
     </button>
 </mat-dialog-actions>

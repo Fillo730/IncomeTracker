@@ -15,7 +15,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 //Models
 import { IncomeEntry } from '../../models/IncomeEntry';
-import { INCOME_ENTRY_TYPES } from '../../models/types/IncomeEntryType';
 
 @Component({
   selector: 'add-income-dialog-component',
@@ -56,7 +55,7 @@ export class AddUpdateIncomeDialogComponent implements OnInit {
         hours: 0,
         date: new Date(),
         description: '',
-        type: INCOME_ENTRY_TYPES.OTHER
+        categoryKey: ''
     };
   }
 
