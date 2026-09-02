@@ -13,6 +13,8 @@ import { ThemeService } from '../../services/theme.service';
 import { ChartOptionsHelper } from '../../helpers/ChartOptions.helper';
 import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
+import { IncomeEntry } from '../../models/IncomeEntry';
+import { DEFAULT_INCOMES_FILTER } from '../../models/filters/IncomesFilters';
 import { LanguageService } from '../../services/language.service';
 import { DateHelper } from '../../helpers/Date.helper';
 
@@ -40,6 +42,7 @@ export class CurrentMonthPage implements OnInit {
   public incomeForCategory = signal<CategoryIncome[] | null>(null);
 
   public pieChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [] };
+  public entriesChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
 
   public pieChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getPieChartOptions();
   public barChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getLineBarChartOptions();
@@ -72,12 +75,18 @@ export class CurrentMonthPage implements OnInit {
       total: this.incomeService.getMonthTotalIncome(month, year),
       hours: this.incomeService.getMonthTotalHours(month, year),
       incomeCategory: this.incomeService.getIncomeByCategory(month, year, this.languageService.language()),
+      entries: this.incomeService.getPagedIncomes(this.languageService.language(), 100, 1, {
+        ...DEFAULT_INCOMES_FILTER,
+        year,
+        month
+      }),
     }).subscribe({
       next: (res) => {
         this.totalIncome.set(res.total.data);
         this.totalHoursWorked.set(res.hours.data);
         this.incomeForCategory.set(res.incomeCategory.data);
         this.setUpPieChart(res.incomeCategory.data);
+        this.setUpEntriesChart(res.entries.data.items);
         this.isLoading.set(false);
       },
       error: () => {
@@ -105,6 +114,27 @@ export class CurrentMonthPage implements OnInit {
       datasets: [{
         data: totals,
         backgroundColor: ['#3f51b5', '#ff9800', '#4caf50', '#f44336', '#9c27b0']
+      }]
+    };
+  }
+
+  private setUpEntriesChart(entries: IncomeEntry[] | null): void {
+    if (!entries || entries.length === 0) {
+      this.entriesChartData = { labels: [], datasets: [] };
+      return;
+    }
+
+    const sorted = [...entries].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    const labels = sorted.map(e => e.description || e.categoryName);
+    const totals = sorted.map(e => e.amount);
+
+    this.entriesChartData = {
+      labels,
+      datasets: [{
+        data: totals,
+        label: this.translate.instant('HomePage.Labels.IncomeDataset'),
+        backgroundColor: '#3f51b5'
       }]
     };
   }

@@ -46,6 +46,21 @@
             </mat-card-content>
           </mat-card>
         </div>
+
+        <div class="charts-row mt-4">
+          <mat-card class="chart-container full-width card-border-theme background-color-custom-ligher">
+            <mat-card-content class="chart-content-with-title">
+              <h4 class="text-color chart-title">{{ "HomePage.Labels.MonthEntries" | translate }}</h4>
+              <div class="chart-canvas-wrapper">
+                <canvas baseChart
+                  [data]="entriesChartData"
+                  [options]="barChartOptions"
+                  [type]="'bar'">
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </section>
     </div>
   }

@@ -40,6 +40,26 @@
     position: relative;
 }
 
+.chart-container mat-card-content.chart-content-with-title {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chart-title {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    opacity: 0.85;
+    flex: 0 0 auto;
+}
+
+.chart-canvas-wrapper {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
 canvas {
     width: 100% !important;
     height: 100% !important;

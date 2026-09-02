@@ -30,6 +30,7 @@
       "MonthlyIncome": "Andamento Ricavi Mensili",
       "MonthlyHours": "Andamento Ore Lavorate",
       "CategoryBreakdownYear": "Ripartizione Annuale per Categoria",
+      "MonthEntries": "Dettaglio Entrate del Mese",
       "IncomeDataset": "Ricavi (€)",
       "HoursDataset": "Ore"
     }

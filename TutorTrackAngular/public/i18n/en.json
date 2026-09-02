@@ -30,6 +30,7 @@
       "MonthlyIncome": "Monthly Revenue Trend",
       "MonthlyHours": "Monthly Hours Worked",
       "CategoryBreakdownYear": "Annual Category Breakdown",
+      "MonthEntries": "Month Entries Detail",
       "IncomeDataset": "Revenue (€)",
       "HoursDataset": "Hours"
     }
