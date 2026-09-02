@@ -107,6 +107,57 @@ public class IncomeRepository (AppDbContext context) : IIncomeRepository
         .ToListAsync();
     }
 
+    public async Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryForYearAsync(int year, string lang)
+    {
+        return await _context.IncomeTypes
+        .Select(type => new CategoryIncomeDto
+        {
+            CategoryName = type.Translations
+                .Where(t => t.Language.Code == lang)
+                .Select(t => t.Name)
+                .FirstOrDefault() ?? type.Key,
+
+            TotalAmount = type.Entries
+                .Where(e => e.Date.Year == year)
+                .Sum(e => e.Amount)
+        })
+
+        .Where(x => x.TotalAmount > 0)
+        .ToListAsync();
+    }
+
+    public async Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year)
+    {
+        var grouped = await _context.IncomeEntries
+            .Where(e => e.Date.Year == year)
+            .GroupBy(e => e.Date.Month)
+            .Select(g => new MonthlyIncomeDto
+            {
+                Month = g.Key,
+                TotalAmount = g.Sum(e => e.Amount)
+            })
+            .ToListAsync();
+
+        return Enumerable.Range(1, 12)
+            .Select(m => grouped.FirstOrDefault(g => g.Month == m) ?? new MonthlyIncomeDto { Month = m, TotalAmount = 0 });
+    }
+
+    public async Task<IEnumerable<MonthlyHoursDto>> GetMonthlyHoursForYearAsync(int year)
+    {
+        var grouped = await _context.IncomeEntries
+            .Where(e => e.Date.Year == year)
+            .GroupBy(e => e.Date.Month)
+            .Select(g => new MonthlyHoursDto
+            {
+                Month = g.Key,
+                TotalHours = g.Sum(e => e.Hours ?? 0)
+            })
+            .ToListAsync();
+
+        return Enumerable.Range(1, 12)
+            .Select(m => grouped.FirstOrDefault(g => g.Month == m) ?? new MonthlyHoursDto { Month = m, TotalHours = 0 });
+    }
+
     public async Task<IEnumerable<IncomeType>> GetAllIncomeTypes(string lang)
     {
         return await _context.IncomeTypes

@@ -98,6 +98,57 @@ public async Task<ActionResult> GetPaged(
         }
     }
 
+    [HttpGet("stats/by-category-year")]
+    public async Task<IActionResult> GetIncomeByCategoryYear([FromQuery] int? year, [FromQuery] string lang = "it")
+    {
+        var targetYear = year ?? DateTime.Now.Year;
+        try
+        {
+            var result = await _incomeService.GetIncomeByCategoryForYearAsync(targetYear, lang);
+
+            return Ok(ApiResponse<IEnumerable<CategoryIncomeDto>>.Ok(result));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<IEnumerable<CategoryIncomeDto>>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
+
+    [HttpGet("stats/monthly-income")]
+    public async Task<IActionResult> GetMonthlyIncome([FromQuery] int? year)
+    {
+        var targetYear = year ?? DateTime.Now.Year;
+        try
+        {
+            var result = await _incomeService.GetMonthlyIncomeForYearAsync(targetYear);
+
+            return Ok(ApiResponse<IEnumerable<MonthlyIncomeDto>>.Ok(result));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<IEnumerable<MonthlyIncomeDto>>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
+
+    [HttpGet("stats/monthly-hours")]
+    public async Task<IActionResult> GetMonthlyHours([FromQuery] int? year)
+    {
+        var targetYear = year ?? DateTime.Now.Year;
+        try
+        {
+            var result = await _incomeService.GetMonthlyHoursForYearAsync(targetYear);
+
+            return Ok(ApiResponse<IEnumerable<MonthlyHoursDto>>.Ok(result));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<IEnumerable<MonthlyHoursDto>>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
+
     [HttpGet("types")]
     public async Task<ActionResult> GetIncomeTypes([FromQuery] string lang)
     {

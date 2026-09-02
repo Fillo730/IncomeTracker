@@ -5,13 +5,15 @@ import { Routes } from '@angular/router';
 import { CurrentMonthPage } from './pages/dashboard/current-month.page';
 import { LayoutComponent } from './components/layout/layout';
 import { AddEntryPage } from './pages/add-entry/add-entry.page';
+import { CurrentYearPage } from './pages/current-year/current-year.page';
 
 export const routes: Routes = [
-    { 
-        path: '', 
+    {
+        path: '',
         component: LayoutComponent,
         children: [
             { path: 'current-month', component: CurrentMonthPage },
+            { path: 'current-year', component: CurrentYearPage },
             { path: 'add-entry', component: AddEntryPage},
             { path: '', redirectTo: 'current-month', pathMatch: 'full' }
         ]

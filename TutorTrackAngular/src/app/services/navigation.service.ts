@@ -11,6 +11,10 @@ export class NavigationService {
     this.router.navigate(['/current-month']);
   }
 
+  public goToCurrentYear(): void {
+    this.router.navigate(['/current-year']);
+  }
+
   public goToAddEntry(): void {
     this.router.navigate(['/add-entry']);
   }

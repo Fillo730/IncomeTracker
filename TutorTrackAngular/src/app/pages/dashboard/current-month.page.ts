@@ -11,7 +11,6 @@ import { StateHandlerComponent } from '../../components/state-handler/state-hand
 import { IncomeService } from '../../services/api/income-entries.service';
 import { ThemeService } from '../../services/theme.service';
 import { ChartOptionsHelper } from '../../helpers/ChartOptions.helper';
-import { INCOME_ENTRY_TYPES } from '../../models/types/IncomeEntryType';
 import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
 import { LanguageService } from '../../services/language.service';
@@ -41,7 +40,6 @@ export class CurrentMonthPage implements OnInit {
   public incomeForCategory = signal<CategoryIncome[] | null>(null);
 
   public pieChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [] };
-  public lineChartHistory: ChartConfiguration<'line'>['data'] = { labels: [], datasets: [] };
 
   public pieChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getPieChartOptions();
   public barChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getLineBarChartOptions();

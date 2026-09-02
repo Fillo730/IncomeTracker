@@ -5,6 +5,9 @@
       <a mat-list-item (click)="navigationService.goToDashboard()">
         <span class="text-color">{{ "Header.Navigation.Dashboard" | translate }}</span>
       </a>
+      <a mat-list-item (click)="navigationService.goToCurrentYear()">
+        <span class="text-color">{{ "Header.Navigation.CurrentYear" | translate }}</span>
+      </a>
       <a mat-list-item (click)="navigationService.goToAddEntry()">
         <span class="text-color">{{ "Header.Navigation.AddEntry" | translate }}</span>
       </a>
@@ -24,6 +27,7 @@
 
       <mat-menu #mobileMenu="matMenu">
         <button mat-menu-item (click)="navigationService.goToDashboard()">{{ "Header.Navigation.Dashboard" | translate }}</button>
+        <button mat-menu-item (click)="navigationService.goToCurrentYear()">{{ "Header.Navigation.CurrentYear" | translate }}</button>
         <button mat-menu-item (click)="navigationService.goToAddEntry()">{{ "Header.Navigation.AddEntry" | translate }}</button>
         <div class="p-2 d-flex flex-row align-items-center gap-2 border-top">
            <language-selector></language-selector>

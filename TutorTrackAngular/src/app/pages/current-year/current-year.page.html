@@ -1,0 +1,66 @@
+@if (isLoading()) {
+  <state-handler-component type="loading" message="HomePage.Loading.Message"></state-handler-component>
+}
+@else {
+  @if(isError()) {
+    <state-handler-component
+      type="error"
+      title="HomePage.Error.Title"
+      message="HomePage.Error.Message"
+      buttonLabel="HomePage.Error.Retry"
+      (action)="loadData()">
+    </state-handler-component>
+  }
+  @else {
+    <div class="dashboard-wrapper back p-4">
+      <section class="dashboard-section mb-5">
+        <h3 class="text-color section-title">
+          {{ "HomePage.Sections.CurrentYear" | translate }} - {{ currentYear }}
+        </h3>
+
+        <div class="charts-row mt-4">
+          <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
+            <mat-card-content class="chart-content-with-title">
+              <h4 class="text-color chart-title">{{ "HomePage.Labels.MonthlyIncome" | translate }}</h4>
+              <div class="chart-canvas-wrapper">
+                <canvas baseChart
+                  [data]="monthlyIncomeChartData"
+                  [options]="barChartOptions"
+                  [type]="'bar'">
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
+            <mat-card-content class="chart-content-with-title">
+              <h4 class="text-color chart-title">{{ "HomePage.Labels.MonthlyHours" | translate }}</h4>
+              <div class="chart-canvas-wrapper">
+                <canvas baseChart
+                  [data]="monthlyHoursChartData"
+                  [options]="barChartOptions"
+                  [type]="'bar'">
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div class="charts-row mt-4">
+          <mat-card class="chart-container full-width pie-card card-border-theme background-color-custom-ligher">
+            <mat-card-content class="chart-content-with-title">
+              <h4 class="text-color chart-title">{{ "HomePage.Labels.CategoryBreakdownYear" | translate }}</h4>
+              <div class="chart-canvas-wrapper">
+                <canvas baseChart
+                  [data]="yearCategoryChartData"
+                  [options]="pieChartOptions"
+                  [type]="'pie'">
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+    </div>
+  }
+}

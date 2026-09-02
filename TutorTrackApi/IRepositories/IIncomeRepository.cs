@@ -11,6 +11,9 @@ public interface IIncomeRepository
     Task<IncomeEntry?> GetByIdAsync(int id);
     Task<bool> DeleteAsync(int id);
     Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryAsync(int year, int month, string lang);
+    Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryForYearAsync(int year, string lang);
+    Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year);
+    Task<IEnumerable<MonthlyHoursDto>> GetMonthlyHoursForYearAsync(int year);
     Task<IEnumerable<IncomeType>> GetAllIncomeTypes (string lang);
     Task<IncomeType?> GetIncomeTypeByKeyAsync(string key);
     Task<double> GetIncomeForMonth(int year, int month);

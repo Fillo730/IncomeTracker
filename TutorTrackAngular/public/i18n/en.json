@@ -2,6 +2,7 @@
   "Header": {
     "Navigation": {
       "Dashboard": "Current Month",
+      "CurrentYear": "Current Year",
       "AddEntry": "Add Entry"
     }
   },
@@ -16,7 +17,8 @@
     },
     "Sections": {
       "ThisMonth": "Current Month Summary",
-      "History": "Historical Trend"
+      "History": "Historical Trend",
+      "CurrentYear": "Current Year"
     },
     "Stats": {
       "TotalCurrentMonth": "Total Income",
@@ -24,7 +26,12 @@
       "HourlyRate": "Average Hourly Rate"
     },
     "Labels": {
-      "RevenueHistory": "Revenue History"
+      "RevenueHistory": "Revenue History",
+      "MonthlyIncome": "Monthly Revenue Trend",
+      "MonthlyHours": "Monthly Hours Worked",
+      "CategoryBreakdownYear": "Annual Category Breakdown",
+      "IncomeDataset": "Revenue (€)",
+      "HoursDataset": "Hours"
     }
   },
   "Incomes": {
@@ -64,6 +71,7 @@
     "Messages": {
       "AddSuccess": "Entry added successfully!",
       "UpdateSuccess": "Entry updated successfully!",
+      "DeleteSuccess": "Entry deleted successfully!",
       "FiltersReset": "Filters reset",
       "ErrorLoad": "Error loading data"
     },

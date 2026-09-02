@@ -11,6 +11,8 @@ import { getApiUrl } from '../../constants/app.config';
 //Models
 import { ApiResponse } from '../../models/ApiResponse.model';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
+import { MonthlyIncome } from '../../models/stats/MonthlyIncome';
+import { MonthlyHours } from '../../models/stats/MonthlyHours';
 import { IncomeEntry } from '../../models/IncomeEntry';
 import { PagedResponse } from '../../models/PagedResponse';
 import { IncomesFilter } from '../../models/filters/IncomesFilters';
@@ -40,6 +42,23 @@ export class IncomeService {
       .set("month", month)
       .set("lang", lang);
     return this.http.get<ApiResponse<CategoryIncome[]>>(`${this.apiUrl}/stats/by-category`, { params });
+  }
+
+  public getIncomeByCategoryForYear(year: number, lang: string): Observable<ApiResponse<CategoryIncome[]>> {
+    let params = new HttpParams()
+      .set("year", year)
+      .set("lang", lang);
+    return this.http.get<ApiResponse<CategoryIncome[]>>(`${this.apiUrl}/stats/by-category-year`, { params });
+  }
+
+  public getMonthlyIncomeForYear(year: number): Observable<ApiResponse<MonthlyIncome[]>> {
+    let params = new HttpParams().set("year", year);
+    return this.http.get<ApiResponse<MonthlyIncome[]>>(`${this.apiUrl}/stats/monthly-income`, { params });
+  }
+
+  public getMonthlyHoursForYear(year: number): Observable<ApiResponse<MonthlyHours[]>> {
+    let params = new HttpParams().set("year", year);
+    return this.http.get<ApiResponse<MonthlyHours[]>>(`${this.apiUrl}/stats/monthly-hours`, { params });
   }
 
   public getPagedIncomes(lang: string, pageSize: number, pageNumber: number, incomesFilter: IncomesFilter): Observable<ApiResponse<PagedResponse<IncomeEntry>>> {

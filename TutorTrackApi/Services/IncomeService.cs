@@ -93,6 +93,21 @@ public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper inc
         return await _incomeRepository.GetIncomeByCategoryAsync(year, month, lang);
     }
 
+    public async Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryForYearAsync(int year, string lang)
+    {
+        return await _incomeRepository.GetIncomeByCategoryForYearAsync(year, lang);
+    }
+
+    public async Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year)
+    {
+        return await _incomeRepository.GetMonthlyIncomeForYearAsync(year);
+    }
+
+    public async Task<IEnumerable<MonthlyHoursDto>> GetMonthlyHoursForYearAsync(int year)
+    {
+        return await _incomeRepository.GetMonthlyHoursForYearAsync(year);
+    }
+
     public async Task<double> GetHoursWorkedForMonth(int year, int month)
     {
         return await _incomeRepository.GetHoursWorkenForMonth(year, month);

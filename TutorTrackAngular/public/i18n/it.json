@@ -2,6 +2,7 @@
   "Header": {
     "Navigation": {
       "Dashboard": "Mese Corrente",
+      "CurrentYear": "Anno Corrente",
       "AddEntry": "Aggiungi Entrata"
     }
   },
@@ -16,7 +17,8 @@
     },
     "Sections": {
       "ThisMonth": "Riepilogo Mese Corrente",
-      "History": "Andamento Storico"
+      "History": "Andamento Storico",
+      "CurrentYear": "Anno Corrente"
     },
     "Stats": {
       "TotalCurrentMonth": "Incasso Totale",
@@ -24,7 +26,12 @@
       "HourlyRate": "Tariffa Oraria Media"
     },
     "Labels": {
-      "RevenueHistory": "Storico Ricavi"
+      "RevenueHistory": "Storico Ricavi",
+      "MonthlyIncome": "Andamento Ricavi Mensili",
+      "MonthlyHours": "Andamento Ore Lavorate",
+      "CategoryBreakdownYear": "Ripartizione Annuale per Categoria",
+      "IncomeDataset": "Ricavi (€)",
+      "HoursDataset": "Ore"
     }
   },
   "Incomes": {
@@ -64,6 +71,7 @@
     "Messages": {
       "AddSuccess": "Entrata aggiunta con successo!",
       "UpdateSuccess": "Entrata aggiornata con successo!",
+      "DeleteSuccess": "Entrata eliminata con successo!",
       "FiltersReset": "Filtri resettati",
       "ErrorLoad": "Errore nel caricamento dei dati"
     },
