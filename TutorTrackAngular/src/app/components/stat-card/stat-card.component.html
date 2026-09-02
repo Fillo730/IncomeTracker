@@ -1,0 +1,15 @@
+<mat-card class="info-card"> <mat-card-content>
+        <div class="icon-box" [ngClass]="colorClass">
+            <mat-icon>{{icon}}</mat-icon>
+        </div>
+        <div class="stat-info">
+            <p class="text-color opacity-7 m-0">{{ label }}</p>
+            @if(isLabelCurrency){
+                <h2 class="text-color m-0 font-bold">{{ value | currency:'EUR':'symbol':'1.0-2' }}</h2>
+            }
+            @else {
+                <h2 class="text-color m-0 font-bold">{{ value | number: '1.0-2'}}</h2>
+            }
+        </div>
+    </mat-card-content>
+</mat-card>

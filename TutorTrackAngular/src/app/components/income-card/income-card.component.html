@@ -1,0 +1,49 @@
+<mat-card class="income-card card-border-theme">
+  <mat-card-content>
+    <div class="card-header">
+      <div class="icon-container background-color-custom-ligher">
+        <mat-icon color="primary">payments</mat-icon>
+      </div>
+      <div class="title-section">
+        <span class="date-label text-color opacity-7">
+          {{ income.date | date: 'dd MMM yyyy' }}
+        </span>
+        <h3 class="description text-color">{{ income.description }}</h3>
+      </div>
+      <div class="actions">
+        <button mat-icon-button (click)="onEdit()" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onDelete()" color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body mt-3">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label text-color opacity-5">Importo</span>
+          <span class="value text-color font-bold">{{ income.amount | currency: 'EUR' }}</span>
+        </div>
+        
+        <div class="info-item" *ngIf="income.hours">
+          <span class="label text-color opacity-5">Ore</span>
+          <span class="value text-color">{{ income.hours }}h</span>
+        </div>
+
+        <div class="info-item">
+          <span class="label text-color opacity-5">Categoria</span>
+          <span class="value badge">{{ income.type }}</span>
+        </div>
+      </div>
+
+      <div class="notes-section mt-2" *ngIf="income.notes">
+        <p class="notes text-color opacity-7">
+          <mat-icon class="mini-icon">notes</mat-icon>
+          {{ income.notes }}
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

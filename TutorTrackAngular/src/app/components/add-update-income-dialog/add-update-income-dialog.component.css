@@ -1,0 +1,18 @@
+mat-form-field {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+}
+
+div[innerHTML] {
+  text-align: center;
+  width: 100%;
+}
+
+[mat-dialog-title] {
+  text-align: center;
+}
+
+textarea {
+    resize: none;
+}

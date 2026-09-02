@@ -1,0 +1,25 @@
+<div class="languages-container">
+    <p-select
+        [options]="languages"
+        [ngModel]="lang()"
+        optionLabel="label"
+        optionValue="value"
+        (onChange)="onLanguageChangeFromPrime($event)"
+        styleClass="custom-lang-select background-color-custom-ligher"
+        panelStyleClass="custom-lang-panel background-color-custom-ligher"
+    >
+        <ng-template pTemplate="item" let-lang>
+            <div class="flex align-items-center gap-3 p-2">
+                <img [src]="lang.flag" width="28" height="20" style="border-radius: 4px; object-fit: cover;" />
+                <span class="text-color font-medium">{{ lang.label }}</span>
+            </div>
+        </ng-template>
+        
+        <ng-template pTemplate="selectedItem" let-lang>
+            <div class="flex align-items-center gap-3 p-1">
+                <img [src]="lang.flag" width="28" height="20" style="border-radius: 4px; object-fit: cover;" />
+                <span class="text-color font-medium">{{ lang.label }}</span>
+            </div>
+        </ng-template>
+    </p-select>
+</div>

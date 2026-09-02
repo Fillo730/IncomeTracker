@@ -1,0 +1,6 @@
+.incomes-list-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}

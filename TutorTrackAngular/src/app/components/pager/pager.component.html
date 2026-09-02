@@ -1,0 +1,9 @@
+<div class="pager-wrapper card-border-theme">
+  <mat-paginator 
+    [length]="totalItems"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="handlePageEvent($event)">
+  </mat-paginator>
+</div>

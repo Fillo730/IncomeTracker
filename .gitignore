@@ -1,9 +1,9 @@
 # --- Dipendenze e Output Angular ---
 node_modules/
-/dist/
-/tmp/
-/out-tsc/
-/.angular/cache/
+dist/
+tmp/
+out-tsc/
+.angular/
 
 # --- Dipendenze e Output .NET ---
 bin/

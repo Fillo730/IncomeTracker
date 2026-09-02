@@ -1,0 +1,97 @@
+.income-card {
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+  background-color: var(--background-card) !important;
+}
+
+.income-card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-section {
+  flex-grow: 1;
+}
+
+.description {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.date-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.info-grid {
+  display: flex;
+  gap: 24px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border-start);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.75rem;
+  margin-bottom: 2px;
+}
+
+.value {
+  font-size: 1rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.badge {
+  background: var(--primary-color-opacity);
+  color: var(--primary-color);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  width: fit-content;
+}
+
+.notes-section {
+  display: flex;
+  align-items: center;
+}
+
+.notes {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+}
+
+.mini-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}

@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>{{ data.title | translate }}</h2>
+
+<mat-dialog-content class="d-flex flex-column align-items-center">
+    <div [innerHTML]="data.text | translate" class="mb-3 text-center"></div>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Incomes.Dialog.Labels.Amount" | translate }}</mat-label>
+        <input matInput type="number" [(ngModel)]="incomeUpdate.amount" placeholder="0.00">
+        <mat-icon matSuffix>euro</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Incomes.Dialog.Labels.Hours" | translate }}</mat-label>
+        <input matInput type="number" [(ngModel)]="incomeUpdate.hours" placeholder="0">
+        <mat-icon matSuffix>schedule</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Incomes.Dialog.Labels.Date" | translate }}</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="incomeUpdate.date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Incomes.Dialog.Labels.Category" | translate }}</mat-label>
+        <mat-select [(ngModel)]="incomeUpdate.type">
+            @for (cat of data.categories; track cat.key) {
+                <mat-option [value]="cat.key">
+                    {{ "Incomes.Types." + cat.key | translate }}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Incomes.Dialog.Labels.Description" | translate }}</mat-label>
+        <textarea matInput [(ngModel)]="incomeUpdate.description" rows="3"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center"> 
+    <button mat-button (click)="onNoClick()">
+        {{ "Incomes.Dialog.Buttons.Cancel" | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!incomeUpdate.amount || !incomeUpdate.type">
+        {{ (incomeUpdate.id ? "Incomes.Dialog.Buttons.Update" : "Incomes.Dialog.Buttons.Save") | translate }}
+    </button>
+</mat-dialog-actions>

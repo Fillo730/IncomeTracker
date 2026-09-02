@@ -1,0 +1,7 @@
+.pager-wrapper {
+  background-color: var(--background-card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-start);
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,52 @@
+@if (isLoading()) {
+  <state-handler-component type="loading" message="HomePage.Loading.Message"></state-handler-component>
+}
+@else {
+  @if(isError()) {
+    <state-handler-component 
+      type="error" 
+      title="HomePage.Error.Title" 
+      message="HomePage.Error.Message"
+      buttonLabel="HomePage.Error.Retry"
+      (action)="loadData()">
+    </state-handler-component>
+  } 
+  @else {
+    <div class="dashboard-wrapper back p-4">
+      <section class="dashboard-section mb-5">
+        <h3 class="text-color section-title">
+          {{ "HomePage.Sections.ThisMonth" | translate }} - {{ currentMonthName() }}
+        </h3>
+        
+        <div class="cards-row mb-4">
+          <stat-card-component 
+            [label]="'HomePage.Stats.TotalCurrentMonth' | translate" 
+            [value]="totalIncome() ?? -1"
+            [isLabelCurrency]="true"
+            icon="payments" 
+            colorClass="blue">
+          </stat-card-component>
+
+          <stat-card-component 
+            [label]="'HomePage.Stats.WorkedHours' | translate" 
+            [value]="totalHoursWorked() ?? -1"
+            icon="schedule" 
+            colorClass="orange">
+          </stat-card-component>
+        </div>
+
+        <div class="charts-row mt-4">
+          <mat-card class="chart-container full-width card-border-theme background-color-custom-ligher">
+            <mat-card-content>
+              <canvas baseChart 
+                [data]="pieChartData" 
+                [options]="pieChartOptions" 
+                [type]="'pie'">
+              </canvas>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </section>
+    </div>
+  }
+}

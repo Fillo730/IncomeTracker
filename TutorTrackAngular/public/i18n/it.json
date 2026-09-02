@@ -1,0 +1,96 @@
+{
+  "Header": {
+    "Navigation": {
+      "Dashboard": "Mese Corrente",
+      "AddEntry": "Aggiungi Entrata"
+    }
+  },
+  "HomePage": {
+    "Loading": {
+      "Message": "Caricamento in corso..."
+    },
+    "Error": {
+      "Title": "Si è verificato un errore",
+      "Message": "Impossibile caricare i dati della dashboard.",
+      "Retry": "Riprova"
+    },
+    "Sections": {
+      "ThisMonth": "Riepilogo Mese Corrente",
+      "History": "Andamento Storico"
+    },
+    "Stats": {
+      "TotalCurrentMonth": "Incasso Totale",
+      "WorkedHours": "Ore Lavorate",
+      "HourlyRate": "Tariffa Oraria Media"
+    },
+    "Labels": {
+      "RevenueHistory": "Storico Ricavi"
+    }
+  },
+  "Incomes": {
+    "Filters": {
+      "Title": "Filtra Entrate",
+      "LabelSearch": "Cerca descrizione",
+      "Placeholder": "Es: Lezione analisi...",
+      "LabelYear": "Anno",
+      "LabelMonth": "Mese",
+      "LabelCategory": "Categoria",
+      "All": "Tutti",
+      "ResetButton": "Reset Filtri"
+    },
+    "Dialog": {
+      "TitleAdd": "Aggiungi Nuova Entrata",
+      "TitleUpdate": "Modifica Entrata",
+      "TextAdd": "Inserisci i dettagli del compenso ricevuto.",
+      "TextUpdate": "Modifica i dettagli dell'entrata selezionata.",
+      "Labels": {
+        "Amount": "Importo (€)",
+        "Hours": "Ore lavorate",
+        "Date": "Data",
+        "Category": "Categoria",
+        "Description": "Descrizione",
+        "Notes": "Note aggiuntive"
+      },
+      "Buttons": {
+        "Cancel": "Annulla",
+        "Save": "Salva",
+        "Update": "Aggiorna"
+      }
+    },
+    "Stats": {
+      "ThisMonth": "Totale Mese",
+      "Update": "Aggiorna Statistiche"
+    },
+    "Messages": {
+      "AddSuccess": "Entrata aggiunta con successo!",
+      "UpdateSuccess": "Entrata aggiornata con successo!",
+      "FiltersReset": "Filtri resettati",
+      "ErrorLoad": "Errore nel caricamento dei dati"
+    },
+    "Welcome": {
+      "Title": "Nessuna entrata trovata",
+      "Buttons": {
+        "FirstEntry": "Aggiungi la tua prima entrata"
+      }
+    },
+    "Types": {
+      "TUTORING": "Ripetizioni",
+      "MOVING": "Traslochi",
+      "OTHER": "Altro"
+    }
+  },
+  "Months": {
+    "1": "Gennaio",
+    "2": "Febbraio",
+    "3": "Marzo",
+    "4": "Aprile",
+    "5": "Maggio",
+    "6": "Giugno",
+    "7": "Luglio",
+    "8": "Agosto",
+    "9": "Settembre",
+    "10": "Ottobre",
+    "11": "Novembre",
+    "12": "Dicembre"
+  }
+}

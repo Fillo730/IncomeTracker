@@ -1,0 +1,9 @@
+<div class="incomes-list-container">
+  @for (item of incomes; track item.id) {
+    <app-income-card 
+      [income]="item" 
+      (edit)="edit.emit($event)" 
+      (delete)="delete.emit($event)">
+    </app-income-card>
+  }
+</div>

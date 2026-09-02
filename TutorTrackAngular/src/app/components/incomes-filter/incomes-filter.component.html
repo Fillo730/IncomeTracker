@@ -1,0 +1,50 @@
+<div [formGroup]="filterForm">
+  <h3 class="mb-4 text-color">{{ "Incomes.Filters.Title" | translate }}</h3>
+  
+  <div class="filter-row">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>{{ "Incomes.Filters.LabelSearch" | translate }}</mat-label>
+      <input class="text-color" matInput formControlName="query" [placeholder]="'Incomes.Filters.Placeholder' | translate">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="select-field">
+      <mat-label>{{ "Incomes.Filters.LabelYear" | translate }}</mat-label>
+      <mat-select class="text-color" formControlName="year">
+        <mat-option [value]="null">{{ "Incomes.Filters.All" | translate }}</mat-option>
+        @for (year of getYears(); track year) {
+          <mat-option [value]="year">{{ year }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="select-field">
+      <mat-label>{{ "Incomes.Filters.LabelMonth" | translate }}</mat-label>
+      <mat-select class="text-color" formControlName="month">
+        <mat-option [value]="null">{{ "Incomes.Filters.All" | translate }}</mat-option>
+        @for (m of getMonths(); track m) {
+          <mat-option [value]="m">{{ 'Months.' + m | translate }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="select-field">
+      <mat-label>{{ "Incomes.Filters.LabelCategory" | translate }}</mat-label>
+      <mat-select class="text-color" formControlName="incomeTypeId">
+        <mat-option [value]="null">{{ "Incomes.Filters.All" | translate }}</mat-option>
+        @for (cat of categories; track cat.id) {
+          <mat-option [value]="cat.id">
+            {{ "Incomes.Types." + cat.key | translate }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="flex-break"></div>
+
+    <button mat-flat-button color="warn" class="reset-button" (click)="onResetClick()">
+      <mat-icon>restart_alt</mat-icon>
+      {{ "Incomes.Filters.ResetButton" | translate }}
+    </button>
+  </div>
+</div>

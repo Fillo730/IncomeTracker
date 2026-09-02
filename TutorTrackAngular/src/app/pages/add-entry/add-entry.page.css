@@ -1,0 +1,50 @@
+.admin-container {
+  padding: 24px;
+  position: relative;
+  min-height: 100vh;
+}
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.fab-add {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+}
+
+.incomes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state-container {
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.big-icon {
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+
+.total-chip {
+  background-color: var(--background-card) !important;
+  border: 1px solid var(--border-start) !important;
+  color: var(--text) !important;
+}
+
+.total-chip strong {
+  margin-left: 8px;
+  color: var(--primary-color);
+}
