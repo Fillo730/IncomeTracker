@@ -1,0 +1,97 @@
+{
+  "Header": {
+    "Navigation": {
+      "Dashboard": "Current Month",
+      "AddEntry": "Add Entry"
+    }
+  },
+  "HomePage": {
+    "Loading": {
+      "Message": "Loading..."
+    },
+    "Error": {
+      "Title": "An error occurred",
+      "Message": "Unable to load dashboard data.",
+      "Retry": "Retry"
+    },
+    "Sections": {
+      "ThisMonth": "Current Month Summary",
+      "History": "Historical Trend"
+    },
+    "Stats": {
+      "TotalCurrentMonth": "Total Income",
+      "WorkedHours": "Hours Worked",
+      "HourlyRate": "Average Hourly Rate"
+    },
+    "Labels": {
+      "RevenueHistory": "Revenue History"
+    }
+  },
+  "Incomes": {
+    "Filters": {
+      "Title": "Filter Entries",
+      "LabelSearch": "Search description",
+      "Placeholder": "E.g: Analysis lesson...",
+      "LabelYear": "Year",
+      "LabelMonth": "Month",
+      "LabelCategory": "Category",
+      "All": "All",
+      "ResetButton": "Reset Filters"
+    },
+    "Dialog": {
+      "TitleAdd": "Add New Entry",
+      "TitleUpdate": "Edit Entry",
+      "TextAdd": "Enter the details of the payment received.",
+      "TextUpdate": "Edit the details of the selected entry.",
+      "Labels": {
+        "Amount": "Amount (€)",
+        "Hours": "Hours worked",
+        "Date": "Date",
+        "Category": "Category",
+        "Description": "Description",
+        "Notes": "Additional notes"
+      },
+      "Buttons": {
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Update": "Update"
+      }
+    },
+    "Stats": {
+      "ThisMonth": "Month Total",
+      "Update": "Update Statistics"
+    },
+    "Messages": {
+      "AddSuccess": "Entry added successfully!",
+      "UpdateSuccess": "Entry updated successfully!",
+      "FiltersReset": "Filters reset",
+      "ErrorLoad": "Error loading data"
+    },
+    "Welcome": {
+      "Title": "No entries found"
+    },
+    "Buttons": {
+      "FirstEntry": "Add your first entry"
+    },
+    "Types": {
+      "TUTORING": "Tutoring",
+      "MOVING": "Moving",
+      "OTHER": "Other",
+      "SALARY": "Salary"
+    }
+  },
+  "Months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  }
+}

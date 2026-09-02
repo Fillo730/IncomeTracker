@@ -68,15 +68,16 @@
       "ErrorLoad": "Errore nel caricamento dei dati"
     },
     "Welcome": {
-      "Title": "Nessuna entrata trovata",
-      "Buttons": {
-        "FirstEntry": "Aggiungi la tua prima entrata"
-      }
+      "Title": "Nessuna entrata trovata"
+    },
+    "Buttons": {
+      "FirstEntry": "Aggiungi la tua prima entrata"
     },
     "Types": {
       "TUTORING": "Ripetizioni",
       "MOVING": "Traslochi",
-      "OTHER": "Altro"
+      "OTHER": "Altro",
+      "SALARY": "Stipendio"
     }
   },
   "Months": {
