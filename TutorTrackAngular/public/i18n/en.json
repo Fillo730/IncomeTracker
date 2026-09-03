@@ -55,7 +55,8 @@
       "IncomeDataset": "Revenue (€)",
       "HoursDataset": "Hours",
       "StudentIncome": "Income per Student",
-      "StudentHours": "Hours per Student"
+      "StudentHours": "Hours per Student",
+      "StudentRepetitionsBreakdown": "Tutoring Breakdown per Student"
     },
     "Goal": {
       "Label": "Monthly Goal",

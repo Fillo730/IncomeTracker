@@ -26,6 +26,11 @@ import { StudentIncome } from '../../models/stats/StudentIncome';
 import { LanguageService } from '../../services/language.service';
 import { DateHelper } from '../../helpers/Date.helper';
 
+const STUDENT_PIE_PALETTE = [
+  '#3f51b5', '#ff9800', '#4caf50', '#f44336', '#9c27b0',
+  '#00bcd4', '#8bc34a', '#e91e63', '#ffc107', '#795548'
+];
+
 @Component({
   selector: 'current-year-page',
   standalone: true,
@@ -53,6 +58,7 @@ export class CurrentYearPage implements OnInit {
   public yearCategoryChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [] };
   public studentIncomeChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
   public studentHoursChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
+  public studentIncomePieChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [] };
 
   public hasStudentData = signal<boolean>(false);
   public annualGoal = signal<number>(0);
@@ -206,6 +212,7 @@ export class CurrentYearPage implements OnInit {
     if (!data || data.length === 0) {
       this.studentIncomeChartData = { labels: [], datasets: [] };
       this.studentHoursChartData = { labels: [], datasets: [] };
+      this.studentIncomePieChartData = { labels: [], datasets: [] };
       this.hasStudentData.set(false);
       return;
     }
@@ -229,6 +236,14 @@ export class CurrentYearPage implements OnInit {
         data: data.map(d => d.totalHours),
         label: this.translate.instant('HomePage.Labels.HoursDataset'),
         backgroundColor: '#9c27b0'
+      }]
+    };
+
+    this.studentIncomePieChartData = {
+      labels,
+      datasets: [{
+        data: data.map(d => d.totalAmount),
+        backgroundColor: labels.map((_, i) => STUDENT_PIE_PALETTE[i % STUDENT_PIE_PALETTE.length])
       }]
     };
   }

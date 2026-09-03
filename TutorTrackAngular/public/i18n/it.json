@@ -55,7 +55,8 @@
       "IncomeDataset": "Ricavi (€)",
       "HoursDataset": "Ore",
       "StudentIncome": "Guadagno per Studente",
-      "StudentHours": "Ore per Studente"
+      "StudentHours": "Ore per Studente",
+      "StudentRepetitionsBreakdown": "Ripartizione Ripetizioni per Studente"
     },
     "Goal": {
       "Label": "Obiettivo Mensile",

@@ -52,6 +52,36 @@
         </mat-card>
 
         <div class="charts-row mt-4">
+          <mat-card [class.half-width]="hasStudentData()" [class.full-width]="!hasStudentData()" class="chart-container pie-card card-border-theme background-color-custom-ligher">
+            <mat-card-content class="chart-content-with-title">
+              <h4 class="text-color chart-title">{{ "HomePage.Labels.CategoryBreakdownYear" | translate }}</h4>
+              <div class="chart-canvas-wrapper">
+                <canvas baseChart
+                  [data]="yearCategoryChartData"
+                  [options]="pieChartOptions"
+                  [type]="'pie'">
+                </canvas>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+          @if (hasStudentData()) {
+            <mat-card class="chart-container half-width pie-card card-border-theme background-color-custom-ligher">
+              <mat-card-content class="chart-content-with-title">
+                <h4 class="text-color chart-title">{{ "HomePage.Labels.StudentRepetitionsBreakdown" | translate }}</h4>
+                <div class="chart-canvas-wrapper">
+                  <canvas baseChart
+                    [data]="studentIncomePieChartData"
+                    [options]="pieChartOptions"
+                    [type]="'pie'">
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
+
+        <div class="charts-row mt-4">
           <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
             <mat-card-content class="chart-content-with-title">
               <h4 class="text-color chart-title">{{ "HomePage.Labels.MonthlyIncome" | translate }}</h4>
@@ -73,21 +103,6 @@
                   [data]="monthlyHoursChartData"
                   [options]="barChartOptions"
                   [type]="'bar'">
-                </canvas>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-
-        <div class="charts-row mt-4">
-          <mat-card class="chart-container full-width pie-card card-border-theme background-color-custom-ligher">
-            <mat-card-content class="chart-content-with-title">
-              <h4 class="text-color chart-title">{{ "HomePage.Labels.CategoryBreakdownYear" | translate }}</h4>
-              <div class="chart-canvas-wrapper">
-                <canvas baseChart
-                  [data]="yearCategoryChartData"
-                  [options]="pieChartOptions"
-                  [type]="'pie'">
                 </canvas>
               </div>
             </mat-card-content>
