@@ -19,7 +19,9 @@
     "Sections": {
       "ThisMonth": "Current Month Summary",
       "History": "Historical Trend",
-      "CurrentYear": "Current Year"
+      "CurrentYear": "Current Year",
+      "PreviousMonth": "Previous month",
+      "NextMonth": "Next month"
     },
     "Stats": {
       "TotalCurrentMonth": "Total Income",

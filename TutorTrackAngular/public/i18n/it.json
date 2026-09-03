@@ -19,7 +19,9 @@
     "Sections": {
       "ThisMonth": "Riepilogo Mese Corrente",
       "History": "Andamento Storico",
-      "CurrentYear": "Anno Corrente"
+      "CurrentYear": "Anno Corrente",
+      "PreviousMonth": "Mese precedente",
+      "NextMonth": "Mese successivo"
     },
     "Stats": {
       "TotalCurrentMonth": "Incasso Totale",

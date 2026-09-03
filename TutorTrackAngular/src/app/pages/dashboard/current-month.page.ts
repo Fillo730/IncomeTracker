@@ -1,6 +1,8 @@
 import { Component, OnInit, Signal, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
@@ -21,7 +23,7 @@ import { DateHelper } from '../../helpers/Date.helper';
 @Component({
   selector: 'home-page',
   standalone: true,
-  imports: [CommonModule, MatCardModule, TranslatePipe, BaseChartDirective, StatCardComponent, StateHandlerComponent],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, TranslatePipe, BaseChartDirective, StatCardComponent, StateHandlerComponent],
   providers: [provideCharts(withDefaultRegisterables())],
   templateUrl: './current-month.page.html',
   styleUrl: './current-month.page.css'
@@ -35,6 +37,9 @@ export class CurrentMonthPage implements OnInit {
 
   public isLoading = signal<boolean>(false);
   public isError = signal<boolean>(false);
+
+  public selectedMonth = signal<number>(new Date().getMonth() + 1);
+  public selectedYear = signal<number>(new Date().getFullYear());
 
   public currentMonthName = signal<string | null>(null);
   public totalIncome = signal<number | null>(null);
@@ -61,12 +66,44 @@ export class CurrentMonthPage implements OnInit {
     this.translate.onLangChange.subscribe(() => this.loadData());
   }
 
-  public loadData(): void {
+  public isCurrentMonth(): boolean {
     const now = new Date();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
+    return this.selectedMonth() === now.getMonth() + 1 && this.selectedYear() === now.getFullYear();
+  }
 
-    this.currentMonthName.set(DateHelper.getMonthName(month, year, this.languageService.language()));
+  public goToPreviousMonth(): void {
+    this.shiftMonth(-1);
+  }
+
+  public goToNextMonth(): void {
+    if (this.isCurrentMonth()) {
+      return;
+    }
+    this.shiftMonth(1);
+  }
+
+  private shiftMonth(offset: number): void {
+    let month = this.selectedMonth() + offset;
+    let year = this.selectedYear();
+
+    if (month < 1) {
+      month = 12;
+      year -= 1;
+    } else if (month > 12) {
+      month = 1;
+      year += 1;
+    }
+
+    this.selectedMonth.set(month);
+    this.selectedYear.set(year);
+    this.loadData();
+  }
+
+  public loadData(): void {
+    const month = this.selectedMonth();
+    const year = this.selectedYear();
+
+    this.currentMonthName.set(`${DateHelper.getMonthName(month, year, this.languageService.language())} ${year}`);
 
     this.isLoading.set(true);
     this.isError.set(false);

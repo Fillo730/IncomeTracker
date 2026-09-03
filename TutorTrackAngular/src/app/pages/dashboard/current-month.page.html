@@ -14,10 +14,21 @@
   @else {
     <div class="dashboard-wrapper back p-4">
       <section class="dashboard-section mb-5">
-        <h3 class="text-color section-title">
-          {{ "HomePage.Sections.ThisMonth" | translate }} - {{ currentMonthName() }}
-        </h3>
-        
+        <div class="section-title-row">
+          <h3 class="text-color section-title">
+            {{ "HomePage.Sections.ThisMonth" | translate }} - {{ currentMonthName() }}
+          </h3>
+
+          <div class="month-nav">
+            <button mat-icon-button (click)="goToPreviousMonth()" [attr.aria-label]="'HomePage.Sections.PreviousMonth' | translate">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="goToNextMonth()" [disabled]="isCurrentMonth()" [attr.aria-label]="'HomePage.Sections.NextMonth' | translate">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
+
         <div class="cards-row mb-4">
           <stat-card-component 
             [label]="'HomePage.Stats.TotalCurrentMonth' | translate" 
