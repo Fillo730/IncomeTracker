@@ -1,0 +1,9 @@
+<div class="students-list-container">
+  @for (item of students; track item.id) {
+    <app-student-card
+      [student]="item"
+      (edit)="edit.emit($event)"
+      (delete)="delete.emit($event)">
+    </app-student-card>
+  }
+</div>

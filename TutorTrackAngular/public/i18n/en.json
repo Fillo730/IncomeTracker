@@ -3,7 +3,8 @@
     "Navigation": {
       "Dashboard": "Current Month",
       "CurrentYear": "Current Year",
-      "AddEntry": "Add Entry"
+      "AddEntry": "Add Entry",
+      "Students": "Students"
     }
   },
   "HomePage": {
@@ -90,16 +91,38 @@
     }
   },
   "Students": {
+    "Loading": "Loading students...",
     "Labels": {
       "Student": "Student",
       "None": "None",
       "NewStudentName": "New student name"
     },
     "Buttons": {
-      "AddNew": "Add student"
+      "AddNew": "Add student",
+      "FirstStudent": "Add your first student"
+    },
+    "Dialog": {
+      "TitleAdd": "Add New Student",
+      "TitleUpdate": "Edit Student",
+      "TextAdd": "Enter the new student's name.",
+      "TextUpdate": "Edit the selected student's name.",
+      "Labels": {
+        "Name": "Name"
+      },
+      "Buttons": {
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Update": "Update"
+      }
+    },
+    "Welcome": {
+      "Title": "No students found"
     },
     "Messages": {
-      "AddSuccess": "Student added successfully!"
+      "AddSuccess": "Student added successfully!",
+      "UpdateSuccess": "Student updated successfully!",
+      "DeleteSuccess": "Student deleted successfully!",
+      "ErrorLoad": "Error loading students"
     }
   },
   "Months": {

@@ -1,0 +1,39 @@
+.student-card {
+  margin-bottom: 16px;
+  transition: transform 0.2s;
+  background-color: var(--background-card) !important;
+}
+
+.student-card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-section {
+  flex-grow: 1;
+}
+
+.description {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}

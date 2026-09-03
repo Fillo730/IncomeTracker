@@ -19,6 +19,10 @@ export class NavigationService {
     this.router.navigate(['/add-entry']);
   }
 
+  public goToStudents(): void {
+    this.router.navigate(['/students']);
+  }
+
   public navigateTo(path: string[]): void {
     this.router.navigate(path);
   }

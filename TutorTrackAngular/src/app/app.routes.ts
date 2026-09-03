@@ -6,6 +6,7 @@ import { CurrentMonthPage } from './pages/dashboard/current-month.page';
 import { LayoutComponent } from './components/layout/layout';
 import { AddEntryPage } from './pages/add-entry/add-entry.page';
 import { CurrentYearPage } from './pages/current-year/current-year.page';
+import { StudentsPage } from './pages/students/students.page';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,7 @@ export const routes: Routes = [
             { path: 'current-month', component: CurrentMonthPage },
             { path: 'current-year', component: CurrentYearPage },
             { path: 'add-entry', component: AddEntryPage},
+            { path: 'students', component: StudentsPage},
             { path: '', redirectTo: 'current-month', pathMatch: 'full' }
         ]
     },

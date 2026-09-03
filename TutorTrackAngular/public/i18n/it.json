@@ -3,7 +3,8 @@
     "Navigation": {
       "Dashboard": "Mese Corrente",
       "CurrentYear": "Anno Corrente",
-      "AddEntry": "Aggiungi Entrata"
+      "AddEntry": "Aggiungi Entrata",
+      "Students": "Studenti"
     }
   },
   "HomePage": {
@@ -90,16 +91,38 @@
     }
   },
   "Students": {
+    "Loading": "Caricamento studenti...",
     "Labels": {
       "Student": "Studente",
       "None": "Nessuno",
       "NewStudentName": "Nome nuovo studente"
     },
     "Buttons": {
-      "AddNew": "Aggiungi studente"
+      "AddNew": "Aggiungi studente",
+      "FirstStudent": "Aggiungi il tuo primo studente"
+    },
+    "Dialog": {
+      "TitleAdd": "Aggiungi Nuovo Studente",
+      "TitleUpdate": "Modifica Studente",
+      "TextAdd": "Inserisci il nome del nuovo studente.",
+      "TextUpdate": "Modifica il nome dello studente selezionato.",
+      "Labels": {
+        "Name": "Nome"
+      },
+      "Buttons": {
+        "Cancel": "Annulla",
+        "Save": "Salva",
+        "Update": "Aggiorna"
+      }
+    },
+    "Welcome": {
+      "Title": "Nessuno studente trovato"
     },
     "Messages": {
-      "AddSuccess": "Studente aggiunto con successo!"
+      "AddSuccess": "Studente aggiunto con successo!",
+      "UpdateSuccess": "Studente aggiornato con successo!",
+      "DeleteSuccess": "Studente eliminato con successo!",
+      "ErrorLoad": "Errore nel caricamento degli studenti"
     }
   },
   "Months": {

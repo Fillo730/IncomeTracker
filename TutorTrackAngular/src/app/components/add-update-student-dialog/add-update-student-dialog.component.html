@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>{{ data.title | translate }}</h2>
+
+<mat-dialog-content class="d-flex flex-column align-items-center">
+    <div [innerHTML]="data.text | translate" class="mb-3 text-center"></div>
+
+    <mat-form-field appearance="outline" class="w-100">
+        <mat-label>{{ "Students.Dialog.Labels.Name" | translate }}</mat-label>
+        <input matInput [(ngModel)]="studentUpdate.name" (keyup.enter)="onSaveClick()">
+    </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+    <button mat-button (click)="onNoClick()">
+        {{ "Students.Dialog.Buttons.Cancel" | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!studentUpdate.name?.trim()">
+        {{ (studentUpdate.id ? "Students.Dialog.Buttons.Update" : "Students.Dialog.Buttons.Save") | translate }}
+    </button>
+</mat-dialog-actions>

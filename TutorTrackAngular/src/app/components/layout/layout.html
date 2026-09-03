@@ -11,6 +11,9 @@
       <a mat-list-item (click)="navigationService.goToAddEntry()">
         <span class="text-color">{{ "Header.Navigation.AddEntry" | translate }}</span>
       </a>
+      <a mat-list-item (click)="navigationService.goToStudents()">
+        <span class="text-color">{{ "Header.Navigation.Students" | translate }}</span>
+      </a>
     </mat-nav-list>
 
     <div class="d-flex flex-row align-items-center p-3 gap-3 border-top">
@@ -29,6 +32,7 @@
         <button mat-menu-item (click)="navigationService.goToDashboard()">{{ "Header.Navigation.Dashboard" | translate }}</button>
         <button mat-menu-item (click)="navigationService.goToCurrentYear()">{{ "Header.Navigation.CurrentYear" | translate }}</button>
         <button mat-menu-item (click)="navigationService.goToAddEntry()">{{ "Header.Navigation.AddEntry" | translate }}</button>
+        <button mat-menu-item (click)="navigationService.goToStudents()">{{ "Header.Navigation.Students" | translate }}</button>
         <div class="p-2 d-flex flex-row align-items-center gap-2 border-top">
            <language-selector></language-selector>
            <theme-selector-component [isDark]="themeService.isDark()" (toggleTheme)="themeService.toggleTheme()"></theme-selector-component>
