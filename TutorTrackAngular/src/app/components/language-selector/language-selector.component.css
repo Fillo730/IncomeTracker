@@ -1,5 +1,53 @@
-@media (max-width:412px) {
-    .languages-container {
-        width: 100%;
-    }
+.language-select {
+  width: auto;
+  cursor: pointer;
+}
+
+.lang-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.flag-img {
+  border-radius: 3px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+::ng-deep .language-select .mat-mdc-select-value {
+  width: auto;
+}
+
+::ng-deep .language-select .mat-mdc-select-arrow-wrapper {
+  transform: none;
+}
+
+/* Panel is rendered in a CDK overlay outside this component, so these rules
+   must stay unscoped (::ng-deep with no :host prefix) to reach it. */
+::ng-deep .language-select-panel {
+  min-width: 180px !important;
+  background-color: var(--bg-lighter) !important;
+  border: 1px solid var(--border-start);
+  border-radius: 8px;
+}
+
+::ng-deep .language-select-panel .mat-mdc-option {
+  color: var(--text);
+  min-height: 40px;
+}
+
+::ng-deep .language-select-panel .mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--text);
+}
+
+::ng-deep .language-select-panel .mat-mdc-option:hover:not(.mdc-option-disabled),
+::ng-deep .language-select-panel .mat-mdc-option.mat-mdc-option-active {
+  background-color: var(--bg) !important;
+}
+
+::ng-deep .language-select-panel .mat-mdc-option.mdc-list-item--selected {
+  background-color: var(--bg) !important;
 }

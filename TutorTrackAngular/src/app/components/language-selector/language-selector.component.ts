@@ -1,9 +1,9 @@
 //Angular Core
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { Component, computed, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-//External Libraries
-import { SelectModule } from 'primeng/select';
+//Angular Material
+import { MatSelectModule } from '@angular/material/select';
 
 //Services
 import { LanguageService } from '../../services/language.service';
@@ -14,7 +14,7 @@ import { LanguageType } from '../../models/types/Language.model';
 
 @Component({
   selector: 'language-selector',
-  imports: [SelectModule, FormsModule],
+  imports: [MatSelectModule, FormsModule],
   templateUrl: './language-selector.component.html',
   styleUrl: './language-selector.component.css',
 })
@@ -26,7 +26,11 @@ export class LanguageSelectorComponent {
 
   public lang = this.languageService.language;
 
-  onLanguageChangeFromPrime(event: { value: LanguageType}) {
-    this.languageService.setLanguage(event.value);
+  public currentOption = computed(() =>
+    this.languages.find(l => l.value === this.lang()) ?? this.languages[0]
+  );
+
+  onLanguageChange(value: LanguageType) {
+    this.languageService.setLanguage(value);
   }
 }

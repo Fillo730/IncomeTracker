@@ -1,25 +1,23 @@
-<div class="languages-container">
-    <p-select
-        [options]="languages"
-        [ngModel]="lang()"
-        optionLabel="label"
-        optionValue="value"
-        (onChange)="onLanguageChangeFromPrime($event)"
-        styleClass="custom-lang-select background-color-custom-ligher"
-        panelStyleClass="custom-lang-panel background-color-custom-ligher"
-    >
-        <ng-template pTemplate="item" let-lang>
-            <div class="flex align-items-center gap-3 p-2">
-                <img [src]="lang.flag" width="28" height="20" style="border-radius: 4px; object-fit: cover;" />
-                <span class="text-color font-medium">{{ lang.label }}</span>
+<mat-select
+    class="language-select"
+    panelClass="language-select-panel"
+    [ngModel]="lang()"
+    (selectionChange)="onLanguageChange($event.value)"
+    disableOptionCentering
+>
+    <mat-select-trigger>
+        <div class="lang-row">
+            <img [src]="currentOption().flag" width="20" height="14" class="flag-img" alt="">
+            <span class="text-color">{{ currentOption().label }}</span>
+        </div>
+    </mat-select-trigger>
+
+    @for (option of languages; track option.value) {
+        <mat-option [value]="option.value">
+            <div class="lang-row">
+                <img [src]="option.flag" width="20" height="14" class="flag-img" alt="">
+                <span>{{ option.label }}</span>
             </div>
-        </ng-template>
-        
-        <ng-template pTemplate="selectedItem" let-lang>
-            <div class="flex align-items-center gap-3 p-1">
-                <img [src]="lang.flag" width="28" height="20" style="border-radius: 4px; object-fit: cover;" />
-                <span class="text-color font-medium">{{ lang.label }}</span>
-            </div>
-        </ng-template>
-    </p-select>
-</div>
+        </mat-option>
+    }
+</mat-select>
