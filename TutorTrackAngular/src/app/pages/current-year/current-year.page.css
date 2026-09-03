@@ -8,6 +8,22 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     opacity: 0.8;
+    margin: 0;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.year-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .charts-row {

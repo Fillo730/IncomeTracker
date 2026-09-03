@@ -21,7 +21,9 @@
       "History": "Andamento Storico",
       "CurrentYear": "Anno Corrente",
       "PreviousMonth": "Mese precedente",
-      "NextMonth": "Mese successivo"
+      "NextMonth": "Mese successivo",
+      "PreviousYear": "Anno precedente",
+      "NextYear": "Anno successivo"
     },
     "Stats": {
       "TotalCurrentMonth": "Incasso Totale",

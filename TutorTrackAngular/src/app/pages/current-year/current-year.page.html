@@ -14,9 +14,20 @@
   @else {
     <div class="dashboard-wrapper back p-4">
       <section class="dashboard-section mb-5">
-        <h3 class="text-color section-title">
-          {{ "HomePage.Sections.CurrentYear" | translate }} - {{ currentYear }}
-        </h3>
+        <div class="section-title-row">
+          <h3 class="text-color section-title">
+            {{ "HomePage.Sections.CurrentYear" | translate }} - {{ selectedYear() }}
+          </h3>
+
+          <div class="year-nav">
+            <button mat-icon-button (click)="goToPreviousYear()" [attr.aria-label]="'HomePage.Sections.PreviousYear' | translate">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="goToNextYear()" [disabled]="isCurrentYear()" [attr.aria-label]="'HomePage.Sections.NextYear' | translate">
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </div>
 
         <div class="charts-row mt-4">
           <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">

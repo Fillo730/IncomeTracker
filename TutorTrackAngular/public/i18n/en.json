@@ -21,7 +21,9 @@
       "History": "Historical Trend",
       "CurrentYear": "Current Year",
       "PreviousMonth": "Previous month",
-      "NextMonth": "Next month"
+      "NextMonth": "Next month",
+      "PreviousYear": "Previous year",
+      "NextYear": "Next year"
     },
     "Stats": {
       "TotalCurrentMonth": "Total Income",
