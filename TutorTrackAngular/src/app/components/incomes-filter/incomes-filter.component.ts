@@ -14,6 +14,7 @@ import { DateHelper } from '../../helpers/Date.helper';
 //Models
 import { IncomesFilter } from '../../models/filters/IncomesFilters';
 import { IncomeCategory } from '../../models/IncomeType';
+import { Student } from '../../models/Student';
 
 //i18n
 import { TranslatePipe } from '@ngx-translate/core';
@@ -45,7 +46,8 @@ export class IncomesFilterComponent implements OnInit, OnDestroy {
     }
   }
   @Input() categories: IncomeCategory[] = [];
-  
+  @Input() students: Student[] = [];
+
   @Output() filterChanged = new EventEmitter<IncomesFilter>();
   @Output() filterReset = new EventEmitter<void>();
 
@@ -53,7 +55,8 @@ export class IncomesFilterComponent implements OnInit, OnDestroy {
     query: [''],
     year: [null],
     month: [null],
-    incomeTypeId: [null]
+    incomeTypeId: [null],
+    studentId: [null]
   });
 
   ngOnInit(): void {

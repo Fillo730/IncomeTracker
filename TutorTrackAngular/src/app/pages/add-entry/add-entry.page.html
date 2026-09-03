@@ -1,9 +1,10 @@
 <div class="admin-container">
   <div class="header-actions">
     @if (!isError() && !isLoading()) {
-      <incomes-filter-component 
-          [filters]="currentFilters()" 
-          [categories]="incomeTypes() ?? []" 
+      <incomes-filter-component
+          [filters]="currentFilters()"
+          [categories]="incomeTypes() ?? []"
+          [students]="students() ?? []"
           (filterChanged)="onFilterChanged($event)"
           (filterReset)="resetFilters()">
       </incomes-filter-component>

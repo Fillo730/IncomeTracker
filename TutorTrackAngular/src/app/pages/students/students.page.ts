@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +44,7 @@ export class StudentsPage implements OnInit {
   private toastService = inject(ToastService);
   private translate = inject(TranslateService);
   private dialog = inject(MatDialog);
+  private router = inject(Router);
 
   public isLoading = signal<boolean>(false);
   public isError = signal<boolean>(false);
@@ -113,6 +115,10 @@ export class StudentsPage implements OnInit {
         });
       }
     });
+  }
+
+  onViewHistory(student: Student): void {
+    this.router.navigate(['/add-entry'], { queryParams: { studentId: student.id } });
   }
 
   onDeleteStudent(id: number): void {

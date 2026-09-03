@@ -40,6 +40,18 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field appearance="outline" class="select-field">
+      <mat-label>{{ "Incomes.Filters.LabelStudent" | translate }}</mat-label>
+      <mat-select class="text-color" formControlName="studentId">
+        <mat-option [value]="null">{{ "Incomes.Filters.All" | translate }}</mat-option>
+        @for (student of students; track student.id) {
+          <mat-option [value]="student.id">
+            {{ student.name }}
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
     <div class="flex-break"></div>
 
     <button mat-flat-button color="warn" class="reset-button" (click)="onResetClick()">

@@ -3,7 +3,8 @@
     <app-student-card
       [student]="item"
       (edit)="edit.emit($event)"
-      (delete)="delete.emit($event)">
+      (delete)="delete.emit($event)"
+      (viewHistory)="viewHistory.emit($event)">
     </app-student-card>
   }
 </div>

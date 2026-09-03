@@ -8,6 +8,9 @@
         <h3 class="description text-color">{{ student.name }}</h3>
       </div>
       <div class="actions">
+        <button mat-icon-button (click)="onViewHistory()" [matTooltip]="'Students.Buttons.ViewHistory' | translate">
+          <mat-icon>history</mat-icon>
+        </button>
         <button mat-icon-button (click)="onEdit()" color="primary">
           <mat-icon>edit</mat-icon>
         </button>

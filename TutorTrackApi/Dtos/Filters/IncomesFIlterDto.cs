@@ -6,4 +6,5 @@ public class IncomesFilterDto
     public int? Year { get; set; }
     public int? Month { get; set; }
     public int? IncomeTypeId { get; set; }
+    public int? StudentId { get; set; }
 }

@@ -20,4 +20,5 @@ export class StudentCardListComponent {
 
   @Output() edit = new EventEmitter<Student>();
   @Output() delete = new EventEmitter<number>();
+  @Output() viewHistory = new EventEmitter<Student>();
 }

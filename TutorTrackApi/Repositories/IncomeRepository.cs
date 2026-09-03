@@ -33,6 +33,11 @@ public class IncomeRepository (AppDbContext context) : IIncomeRepository
             query = query.Where(x => x.IncomeType.Id == filters.IncomeTypeId);
         }
 
+        if (filters.StudentId is not null && filters.StudentId > 0)
+        {
+            query = query.Where(x => x.StudentId == filters.StudentId);
+        }
+
         var totalCount = await query.CountAsync();
 
         var items = await query

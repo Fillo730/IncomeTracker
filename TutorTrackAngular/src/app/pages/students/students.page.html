@@ -22,7 +22,8 @@
         <app-student-card-list
           [students]="students()"
           (edit)="onEditStudent($event)"
-          (delete)="onDeleteStudent($event)">
+          (delete)="onDeleteStudent($event)"
+          (viewHistory)="onViewHistory($event)">
         </app-student-card-list>
 
       }

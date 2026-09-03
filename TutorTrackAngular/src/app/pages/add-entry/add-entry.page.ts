@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,11 +25,13 @@ import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 // Services
 import { IncomeService } from '../../services/api/income-entries.service';
+import { StudentService } from '../../services/api/student.service';
 import { ToastService } from '../../services/toast.service';
 import { LanguageService } from '../../services/language.service';
 import { forkJoin } from 'rxjs';
 import { IncomeType } from '../../models/types/IncomeEntryType';
 import { IncomeCategory } from '../../models/IncomeType';
+import { Student } from '../../models/Student';
 
 @Component({
   selector: 'add-entry-page',
@@ -52,16 +55,19 @@ import { IncomeCategory } from '../../models/IncomeType';
 })
 export class AddEntryPage implements OnInit {
   private incomeService = inject(IncomeService);
+  private studentService = inject(StudentService);
   private toastService = inject(ToastService);
   private translate = inject(TranslateService);
   private dialog = inject(MatDialog);
   private languageService = inject(LanguageService);
+  private route = inject(ActivatedRoute);
 
   public isLoading = signal<boolean>(false);
   public isError = signal<boolean>(false);
   public monthlyTotal = signal<number>(0);
   public incomes = signal<IncomeEntry[]>([]);
   public incomeTypes = signal<IncomeCategory[] | null>(null);
+  public students = signal<Student[] | null>(null);
   public currentFilters = signal<IncomesFilter>({ ...DEFAULT_INCOMES_FILTER });
   public lang = this.languageService.language();
 
@@ -70,7 +76,16 @@ export class AddEntryPage implements OnInit {
   public pageIndex = signal<number>(0);
 
   ngOnInit(): void {
-    this.loadData();
+    this.route.queryParamMap.subscribe(params => {
+      const studentId = params.get('studentId');
+
+      this.currentFilters.set(studentId
+        ? { ...DEFAULT_INCOMES_FILTER, year: null, month: null, studentId: Number(studentId) }
+        : { ...DEFAULT_INCOMES_FILTER });
+
+      this.pageIndex.set(0);
+      this.loadData();
+    });
   }
 
   loadData(): void {
@@ -84,6 +99,7 @@ export class AddEntryPage implements OnInit {
       total: this.incomeService.getMonthTotalIncome(month, year),
       paged: this.incomeService.getPagedIncomes(this.lang, this.pageSize(), this.pageIndex() + 1, this.currentFilters()),
       types: this.incomeService.getIncomeTypes(this.lang),
+      students: this.studentService.getStudents(),
     }).subscribe({
       next: (res) => {
         if (res.total.success) {
@@ -97,7 +113,10 @@ export class AddEntryPage implements OnInit {
 
         if(res.types.success) {
           this.incomeTypes.set(res.types.data);
-          console.log(res);
+        }
+
+        if (res.students.success) {
+          this.students.set(res.students.data);
         }
 
         this.isLoading.set(false);

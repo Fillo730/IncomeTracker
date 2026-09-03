@@ -3,11 +3,13 @@ export interface IncomesFilter {
   year: number | null;
   month: number | null;
   incomeTypeId: number | null;
+  studentId: number | null;
 }
 
 export const DEFAULT_INCOMES_FILTER: IncomesFilter = {
   query: '',
   year: new Date().getFullYear(),
   month: new Date().getMonth() + 1,
-  incomeTypeId: null
+  incomeTypeId: null,
+  studentId: null
 };

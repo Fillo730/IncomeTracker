@@ -51,6 +51,7 @@
       "LabelYear": "Year",
       "LabelMonth": "Month",
       "LabelCategory": "Category",
+      "LabelStudent": "Student",
       "All": "All",
       "ResetButton": "Reset Filters"
     },
@@ -106,7 +107,8 @@
     },
     "Buttons": {
       "AddNew": "Add student",
-      "FirstStudent": "Add your first student"
+      "FirstStudent": "Add your first student",
+      "ViewHistory": "View lesson history"
     },
     "Dialog": {
       "TitleAdd": "Add New Student",

@@ -115,6 +115,10 @@ export class IncomeService {
       params = params.set("incomeTypeId", filter.incomeTypeId.toString());
     }
 
+    if (filter.studentId !== null && filter.studentId !== undefined) {
+      params = params.set("studentId", filter.studentId.toString());
+    }
+
     return params;
   }
 }
