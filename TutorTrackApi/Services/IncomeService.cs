@@ -10,11 +10,15 @@ using TutorTrackApi.Models.Responses;
 
 namespace TutorTrackApi.Services;
 
-public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper incomeMapper) : IIncomeService
+public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper incomeMapper, IStudentRepository studentRepository) : IIncomeService
 {
+    private const string TutoringIncomeTypeKey = "TUTORING";
+
     private readonly IIncomeRepository _incomeRepository = incomeRepository;
 
     private readonly IIncomeMapper _incomeMapper = incomeMapper;
+
+    private readonly IStudentRepository _studentRepository = studentRepository;
 
     public async Task<PagedResponse<IncomeEntryDto>> GetPagedIncomesAsync(string lang, int pageSize, int pageNumber, IncomesFilterDto filters)
     {
@@ -30,6 +34,11 @@ public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper inc
         var incomeType = await _incomeRepository.GetIncomeTypeByKeyAsync(entry.CategoryKey);
 
         if (incomeType is null)
+        {
+            return false;
+        }
+
+        if (!await IsStudentAssignmentValidAsync(incomeType.Key, entry.StudentId))
         {
             return false;
         }
@@ -58,15 +67,38 @@ public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper inc
             return false;
         }
 
+        if (!await IsStudentAssignmentValidAsync(incomeType.Key, entry.StudentId))
+        {
+            return false;
+        }
+
         existing.Description = entry.Description;
         existing.Amount = (decimal)entry.Amount;
         existing.Hours = entry.Hours;
         existing.Date = entry.Date;
         existing.IncomeTypeId = incomeType.Id;
+        existing.StudentId = entry.StudentId;
 
         await _incomeRepository.SaveChangesAsync();
 
         return true;
+    }
+
+    private async Task<bool> IsStudentAssignmentValidAsync(string incomeTypeKey, int? studentId)
+    {
+        if (studentId is null)
+        {
+            return true;
+        }
+
+        if (!string.Equals(incomeTypeKey, TutoringIncomeTypeKey, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var student = await _studentRepository.GetByIdAsync(studentId.Value);
+
+        return student is not null;
     }
 
     public async Task<bool> DeleteIncomeAsync(int id)

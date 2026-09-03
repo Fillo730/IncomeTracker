@@ -39,6 +39,7 @@ public class IncomeRepository (AppDbContext context) : IIncomeRepository
             .Include(e => e.IncomeType)
                 .ThenInclude(t => t.Translations)
                 .ThenInclude(tr => tr.Language)
+            .Include(e => e.Student)
             .AsNoTracking()
             .OrderByDescending(e => e.Date)
             .Skip((pageNumber - 1) * pageSize) 

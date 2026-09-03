@@ -24,7 +24,7 @@
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Category" | translate }}</mat-label>
-        <mat-select [(ngModel)]="incomeUpdate.categoryKey">
+        <mat-select [(ngModel)]="incomeUpdate.categoryKey" (ngModelChange)="onCategoryChange()">
             @for (cat of data.categories; track cat.key) {
                 <mat-option [value]="cat.key">
                     {{ "Incomes.Types." + cat.key | translate }}
@@ -32,6 +32,38 @@
             }
         </mat-select>
     </mat-form-field>
+
+    @if (isTutoringCategory) {
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ "Students.Labels.Student" | translate }}</mat-label>
+            <mat-select [(ngModel)]="incomeUpdate.studentId">
+                <mat-option [value]="null">{{ "Students.Labels.None" | translate }}</mat-option>
+                @for (student of students; track student.id) {
+                    <mat-option [value]="student.id">{{ student.name }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        @if (!isAddingStudent) {
+            <button mat-button type="button" class="w-100 mb-3" (click)="isAddingStudent = true">
+                <mat-icon>person_add</mat-icon>
+                {{ "Students.Buttons.AddNew" | translate }}
+            </button>
+        } @else {
+            <div class="d-flex w-100 align-items-center mb-3">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{ "Students.Labels.NewStudentName" | translate }}</mat-label>
+                    <input matInput [(ngModel)]="newStudentName" (keyup.enter)="onAddStudentClick()">
+                </mat-form-field>
+                <button mat-icon-button type="button" color="primary" [disabled]="!newStudentName.trim()" (click)="onAddStudentClick()">
+                    <mat-icon>check</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="isAddingStudent = false; newStudentName = ''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+        }
+    }
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Description" | translate }}</mat-label>

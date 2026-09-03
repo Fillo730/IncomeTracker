@@ -89,6 +89,19 @@
       "SALARY": "Stipendio"
     }
   },
+  "Students": {
+    "Labels": {
+      "Student": "Studente",
+      "None": "Nessuno",
+      "NewStudentName": "Nome nuovo studente"
+    },
+    "Buttons": {
+      "AddNew": "Aggiungi studente"
+    },
+    "Messages": {
+      "AddSuccess": "Studente aggiunto con successo!"
+    }
+  },
   "Months": {
     "1": "Gennaio",
     "2": "Febbraio",

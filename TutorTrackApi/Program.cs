@@ -4,6 +4,7 @@ using TutorTrackApi.IMappers;
 using TutorTrackApi.IRepositories;
 using TutorTrackApi.IServices;
 using TutorTrackApi.Mapper;
+using TutorTrackApi.Repositories;
 using TutorTrackApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +36,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IIncomeRepository, IncomeRepository>();
 builder.Services.AddScoped<IIncomeService, IncomeService>();
 builder.Services.AddScoped<IIncomeMapper, IncomeMapper>();
+
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IStudentMapper, StudentMapper>();
 
 builder.Services.AddSwaggerGen();
 

@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<IncomeType> IncomeTypes { get; set; } = null!;
     public DbSet<IncomeTypeTranslation> IncomeTypeTranslations { get; set; } = null!;
     public DbSet<IncomeEntry> IncomeEntries { get; set; } = null!;
+    public DbSet<Student> Students { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -26,6 +27,11 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<IncomeEntry>(entity => {
             entity.Property(e => e.Amount).HasConversion<double>();
+
+            entity.HasOne(e => e.Student)
+                .WithMany(s => s.Entries)
+                .HasForeignKey(e => e.StudentId)
+                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<Language>().HasData(

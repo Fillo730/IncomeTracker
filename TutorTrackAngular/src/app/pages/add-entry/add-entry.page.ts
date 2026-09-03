@@ -154,7 +154,12 @@ export class AddEntryPage implements OnInit {
   onEditIncome(income: IncomeEntry): void {
     const dialogRef = this.dialog.open(AddUpdateIncomeDialogComponent, {
       width: '400px',
-      data: { income: income, title: 'Incomes.Dialog.TitleUpdate' },
+      data: {
+        income: income,
+        title: 'Incomes.Dialog.TitleUpdate',
+        text: 'Incomes.Dialog.TextUpdate',
+        categories: this.incomeTypes()
+      },
       panelClass: "dialog-with-theme"
     });
 

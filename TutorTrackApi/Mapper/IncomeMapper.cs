@@ -18,7 +18,9 @@ public class IncomeMapper : IIncomeMapper
             Date = e.Date,
             CategoryKey = e.IncomeType.Key ?? "N/A",
             CategoryName = e.IncomeType.Translations
-                .FirstOrDefault(t => t.Language.Code == lang)?.Name ?? e.IncomeType.Key ?? "N/A"
+                .FirstOrDefault(t => t.Language.Code == lang)?.Name ?? e.IncomeType.Key ?? "N/A",
+            StudentId = e.StudentId,
+            StudentName = e.Student?.Name
         };
     }
 
@@ -35,7 +37,8 @@ public class IncomeMapper : IIncomeMapper
             Amount = (decimal)dto.Amount,
             Hours = dto.Hours,
             Date = dto.Date,
-            IncomeTypeId = incomeTypeId
+            IncomeTypeId = incomeTypeId,
+            StudentId = dto.StudentId
         };
     }
 

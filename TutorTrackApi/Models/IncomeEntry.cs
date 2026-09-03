@@ -12,4 +12,7 @@ public class IncomeEntry : BaseEntity
     
     public int IncomeTypeId { get; set; }
     public virtual IncomeType IncomeType { get; set; } = null!;
+
+    public int? StudentId { get; set; }
+    public virtual Student? Student { get; set; }
 }

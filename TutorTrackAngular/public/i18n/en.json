@@ -89,6 +89,19 @@
       "SALARY": "Salary"
     }
   },
+  "Students": {
+    "Labels": {
+      "Student": "Student",
+      "None": "None",
+      "NewStudentName": "New student name"
+    },
+    "Buttons": {
+      "AddNew": "Add student"
+    },
+    "Messages": {
+      "AddSuccess": "Student added successfully!"
+    }
+  },
   "Months": {
     "1": "January",
     "2": "February",

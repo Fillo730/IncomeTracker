@@ -7,4 +7,6 @@ export interface IncomeEntry {
   categoryKey: string;
   categoryName: string;
   notes : string;
+  studentId?: number | null;
+  studentName?: string | null;
 }
