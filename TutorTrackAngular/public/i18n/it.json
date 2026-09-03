@@ -23,7 +23,8 @@
       "PreviousMonth": "Mese precedente",
       "NextMonth": "Mese successivo",
       "PreviousYear": "Anno precedente",
-      "NextYear": "Anno successivo"
+      "NextYear": "Anno successivo",
+      "Students": "Statistiche Studenti"
     },
     "Stats": {
       "TotalCurrentMonth": "Incasso Totale",
@@ -37,7 +38,9 @@
       "CategoryBreakdownYear": "Ripartizione Annuale per Categoria",
       "MonthEntries": "Dettaglio Entrate del Mese",
       "IncomeDataset": "Ricavi (€)",
-      "HoursDataset": "Ore"
+      "HoursDataset": "Ore",
+      "StudentIncome": "Guadagno per Studente",
+      "StudentHours": "Ore per Studente"
     }
   },
   "Incomes": {

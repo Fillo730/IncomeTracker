@@ -16,6 +16,7 @@ import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
 import { MonthlyIncome } from '../../models/stats/MonthlyIncome';
 import { MonthlyHours } from '../../models/stats/MonthlyHours';
+import { StudentIncome } from '../../models/stats/StudentIncome';
 import { LanguageService } from '../../services/language.service';
 import { DateHelper } from '../../helpers/Date.helper';
 
@@ -41,6 +42,10 @@ export class CurrentYearPage implements OnInit {
   public monthlyIncomeChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
   public monthlyHoursChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
   public yearCategoryChartData: ChartConfiguration<'pie'>['data'] = { labels: [], datasets: [] };
+  public studentIncomeChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
+  public studentHoursChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
+
+  public hasStudentData = signal<boolean>(false);
 
   public pieChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getPieChartOptions();
   public barChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getLineBarChartOptions();
@@ -86,11 +91,13 @@ export class CurrentYearPage implements OnInit {
       yearlyIncome: this.incomeService.getMonthlyIncomeForYear(year),
       yearlyHours: this.incomeService.getMonthlyHoursForYear(year),
       yearlyCategory: this.incomeService.getIncomeByCategoryForYear(year, this.languageService.language()),
+      studentIncome: this.incomeService.getIncomeByStudentForYear(year),
     }).subscribe({
       next: (res) => {
         this.setUpMonthlyIncomeChart(res.yearlyIncome.data);
         this.setUpMonthlyHoursChart(res.yearlyHours.data);
         this.setUpYearCategoryChart(res.yearlyCategory.data);
+        this.setUpStudentCharts(res.studentIncome.data);
         this.isLoading.set(false);
       },
       error: () => {
@@ -136,6 +143,37 @@ export class CurrentYearPage implements OnInit {
         data: totals,
         label: this.translate.instant('HomePage.Labels.HoursDataset'),
         backgroundColor: '#ff9800'
+      }]
+    };
+  }
+
+  private setUpStudentCharts(data: StudentIncome[] | null): void {
+    if (!data || data.length === 0) {
+      this.studentIncomeChartData = { labels: [], datasets: [] };
+      this.studentHoursChartData = { labels: [], datasets: [] };
+      this.hasStudentData.set(false);
+      return;
+    }
+
+    this.hasStudentData.set(true);
+
+    const labels = data.map(d => d.studentName);
+
+    this.studentIncomeChartData = {
+      labels,
+      datasets: [{
+        data: data.map(d => d.totalAmount),
+        label: this.translate.instant('HomePage.Labels.IncomeDataset'),
+        backgroundColor: '#4caf50'
+      }]
+    };
+
+    this.studentHoursChartData = {
+      labels,
+      datasets: [{
+        data: data.map(d => d.totalHours),
+        label: this.translate.instant('HomePage.Labels.HoursDataset'),
+        backgroundColor: '#9c27b0'
       }]
     };
   }

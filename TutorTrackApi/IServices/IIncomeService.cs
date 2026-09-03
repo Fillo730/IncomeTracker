@@ -19,6 +19,7 @@ public interface IIncomeService
     Task<IEnumerable<IncomeTypeDto>> GetIncomeTypesAsync(string lang);
     Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryAsync(int year, int month, string lang);
     Task<IEnumerable<CategoryIncomeDto>> GetIncomeByCategoryForYearAsync(int year, string lang);
+    Task<IEnumerable<StudentIncomeDto>> GetIncomeByStudentForYearAsync(int year);
     Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year);
     Task<IEnumerable<MonthlyHoursDto>> GetMonthlyHoursForYearAsync(int year);
 }

@@ -71,6 +71,42 @@
             </mat-card-content>
           </mat-card>
         </div>
+
+        @if (hasStudentData()) {
+          <hr class="section-divider">
+
+          <h3 class="text-color section-title mb-4">
+            {{ "HomePage.Sections.Students" | translate }}
+          </h3>
+
+          <div class="charts-row mt-4">
+            <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
+              <mat-card-content class="chart-content-with-title">
+                <h4 class="text-color chart-title">{{ "HomePage.Labels.StudentIncome" | translate }}</h4>
+                <div class="chart-canvas-wrapper">
+                  <canvas baseChart
+                    [data]="studentIncomeChartData"
+                    [options]="barChartOptions"
+                    [type]="'bar'">
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
+              <mat-card-content class="chart-content-with-title">
+                <h4 class="text-color chart-title">{{ "HomePage.Labels.StudentHours" | translate }}</h4>
+                <div class="chart-canvas-wrapper">
+                  <canvas baseChart
+                    [data]="studentHoursChartData"
+                    [options]="barChartOptions"
+                    [type]="'bar'">
+                  </canvas>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        }
       </section>
     </div>
   }

@@ -127,6 +127,27 @@ public class IncomeRepository (AppDbContext context) : IIncomeRepository
         .ToListAsync();
     }
 
+    public async Task<IEnumerable<StudentIncomeDto>> GetIncomeByStudentForYearAsync(int year)
+    {
+        return await _context.Students
+        .Select(student => new StudentIncomeDto
+        {
+            StudentName = student.Name,
+
+            TotalAmount = student.Entries
+                .Where(e => e.Date.Year == year)
+                .Sum(e => e.Amount),
+
+            TotalHours = student.Entries
+                .Where(e => e.Date.Year == year)
+                .Sum(e => e.Hours ?? 0)
+        })
+
+        .Where(x => x.TotalAmount > 0)
+        .OrderByDescending(x => x.TotalAmount)
+        .ToListAsync();
+    }
+
     public async Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year)
     {
         var grouped = await _context.IncomeEntries

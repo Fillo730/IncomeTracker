@@ -23,7 +23,8 @@
       "PreviousMonth": "Previous month",
       "NextMonth": "Next month",
       "PreviousYear": "Previous year",
-      "NextYear": "Next year"
+      "NextYear": "Next year",
+      "Students": "Student Statistics"
     },
     "Stats": {
       "TotalCurrentMonth": "Total Income",
@@ -37,7 +38,9 @@
       "CategoryBreakdownYear": "Annual Category Breakdown",
       "MonthEntries": "Month Entries Detail",
       "IncomeDataset": "Revenue (€)",
-      "HoursDataset": "Hours"
+      "HoursDataset": "Hours",
+      "StudentIncome": "Income per Student",
+      "StudentHours": "Hours per Student"
     }
   },
   "Incomes": {

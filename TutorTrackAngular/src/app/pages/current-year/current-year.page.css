@@ -26,6 +26,13 @@
     gap: 4px;
 }
 
+.section-divider {
+    border: 0;
+    border-top: 1px solid var(--border-start);
+    margin: 40px 0 24px 0;
+    opacity: 0.3;
+}
+
 .charts-row {
     display: flex;
     width: 100%;

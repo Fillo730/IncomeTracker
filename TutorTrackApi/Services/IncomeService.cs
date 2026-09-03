@@ -130,6 +130,11 @@ public class IncomeService(IIncomeRepository incomeRepository, IIncomeMapper inc
         return await _incomeRepository.GetIncomeByCategoryForYearAsync(year, lang);
     }
 
+    public async Task<IEnumerable<StudentIncomeDto>> GetIncomeByStudentForYearAsync(int year)
+    {
+        return await _incomeRepository.GetIncomeByStudentForYearAsync(year);
+    }
+
     public async Task<IEnumerable<MonthlyIncomeDto>> GetMonthlyIncomeForYearAsync(int year)
     {
         return await _incomeRepository.GetMonthlyIncomeForYearAsync(year);

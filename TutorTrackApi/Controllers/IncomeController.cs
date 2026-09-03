@@ -115,6 +115,23 @@ public async Task<ActionResult> GetPaged(
         }
     }
 
+    [HttpGet("stats/by-student-year")]
+    public async Task<IActionResult> GetIncomeByStudentYear([FromQuery] int? year)
+    {
+        var targetYear = year ?? DateTime.Now.Year;
+        try
+        {
+            var result = await _incomeService.GetIncomeByStudentForYearAsync(targetYear);
+
+            return Ok(ApiResponse<IEnumerable<StudentIncomeDto>>.Ok(result));
+        }
+        catch (Exception ex)
+        {
+            return Ok(ApiResponse<IEnumerable<StudentIncomeDto>>.Fail(
+                AppStatusCode.DatabaseError, ex.Message));
+        }
+    }
+
     [HttpGet("stats/monthly-income")]
     public async Task<IActionResult> GetMonthlyIncome([FromQuery] int? year)
     {
