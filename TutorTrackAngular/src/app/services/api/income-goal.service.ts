@@ -11,6 +11,7 @@ import { getApiUrl } from '../../constants/app.config';
 //Models
 import { ApiResponse } from '../../models/ApiResponse.model';
 import { IncomeGoal } from '../../models/IncomeGoal';
+import { AnnualIncomeGoal } from '../../models/AnnualIncomeGoal';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,13 @@ export class IncomeGoalService {
 
   public setMonthlyGoal(monthlyAmount: number): Observable<ApiResponse<IncomeGoal>> {
     return this.http.put<ApiResponse<IncomeGoal>>(`${this.apiUrl}/monthly`, { monthlyAmount });
+  }
+
+  public getAnnualGoal(): Observable<ApiResponse<AnnualIncomeGoal>> {
+    return this.http.get<ApiResponse<AnnualIncomeGoal>>(`${this.apiUrl}/annual`);
+  }
+
+  public setAnnualGoal(annualAmount: number): Observable<ApiResponse<AnnualIncomeGoal>> {
+    return this.http.put<ApiResponse<AnnualIncomeGoal>>(`${this.apiUrl}/annual`, { annualAmount });
   }
 }

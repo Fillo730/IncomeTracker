@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TutorTrackApi.Data;
 
@@ -10,9 +11,11 @@ using TutorTrackApi.Data;
 namespace TutorTrackApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260903194126_AddAnnualIncomeGoal")]
+    partial class AddAnnualIncomeGoal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -38,19 +41,19 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(591),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9224),
                             Key = "TUTORING"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(592),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9225),
                             Key = "OTHER"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(593),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9226),
                             Key = "SALARY"
                         });
                 });
@@ -144,7 +147,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(609),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9243),
                             IncomeTypeId = 1,
                             LanguageId = 1,
                             Name = "Ripetizioni"
@@ -152,7 +155,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(611),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9247),
                             IncomeTypeId = 1,
                             LanguageId = 2,
                             Name = "Tutoring"
@@ -160,7 +163,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(613),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9248),
                             IncomeTypeId = 3,
                             LanguageId = 1,
                             Name = "Altro"
@@ -168,7 +171,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(613),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9248),
                             IncomeTypeId = 3,
                             LanguageId = 2,
                             Name = "Other"
@@ -176,7 +179,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(614),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9249),
                             IncomeTypeId = 4,
                             LanguageId = 1,
                             Name = "Stipendio"
@@ -184,7 +187,7 @@ namespace TutorTrackApi.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(615),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9250),
                             IncomeTypeId = 4,
                             LanguageId = 2,
                             Name = "Salary"
@@ -220,14 +223,14 @@ namespace TutorTrackApi.Migrations
                         {
                             Id = 1,
                             Code = "it",
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(507),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9106),
                             Name = "Italiano"
                         },
                         new
                         {
                             Id = 2,
                             Code = "en",
-                            CreatedAt = new DateTime(2026, 9, 3, 19, 52, 52, 955, DateTimeKind.Utc).AddTicks(510),
+                            CreatedAt = new DateTime(2026, 9, 3, 19, 41, 26, 169, DateTimeKind.Utc).AddTicks(9109),
                             Name = "English"
                         });
                 });
@@ -248,31 +251,6 @@ namespace TutorTrackApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("TutorTrackApi.Models.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Username")
-                        .IsUnique();
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("TutorTrackApi.Models.IncomeEntry", b =>

@@ -19,4 +19,16 @@ public class IncomeGoalService(IIncomeGoalRepository goalRepository) : IIncomeGo
     {
         await _goalRepository.SetMonthlyAmountAsync((decimal)amount);
     }
+
+    public async Task<AnnualIncomeGoalDto> GetAnnualGoalAsync()
+    {
+        var goal = await _goalRepository.GetAsync();
+
+        return new AnnualIncomeGoalDto { AnnualAmount = goal is null ? 0 : (double)goal.AnnualAmount };
+    }
+
+    public async Task SetAnnualGoalAsync(double amount)
+    {
+        await _goalRepository.SetAnnualAmountAsync((decimal)amount);
+    }
 }

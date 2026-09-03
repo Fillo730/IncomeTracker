@@ -4,7 +4,22 @@
       "Dashboard": "Mese Corrente",
       "CurrentYear": "Anno Corrente",
       "AddEntry": "Aggiungi Entrata",
-      "Students": "Studenti"
+      "Students": "Studenti",
+      "Logout": "Esci"
+    }
+  },
+  "Login": {
+    "Title": "TutorTrack",
+    "Subtitle": "Accedi per continuare",
+    "Labels": {
+      "Username": "Username",
+      "Password": "Password"
+    },
+    "Buttons": {
+      "Submit": "Accedi"
+    },
+    "Errors": {
+      "Generic": "Errore durante l'accesso. Riprova."
     }
   },
   "HomePage": {
@@ -44,11 +59,15 @@
     },
     "Goal": {
       "Label": "Obiettivo Mensile",
+      "AnnualLabel": "Obiettivo Annuale",
       "NotSet": "Nessun obiettivo impostato",
       "EditTooltip": "Imposta obiettivo",
       "DialogTitle": "Imposta Obiettivo Mensile",
       "DialogText": "Definisci quanto vuoi guadagnare ogni mese.",
       "DialogLabel": "Obiettivo (€)",
+      "AnnualDialogTitle": "Imposta Obiettivo Annuale",
+      "AnnualDialogText": "Definisci quanto vuoi guadagnare in totale quest'anno.",
+      "AnnualDialogLabel": "Obiettivo (€)",
       "DialogCancel": "Annulla",
       "DialogSave": "Salva",
       "UpdateSuccess": "Obiettivo aggiornato con successo!"
@@ -78,6 +97,11 @@
         "Category": "Categoria",
         "Description": "Descrizione",
         "Notes": "Note aggiuntive"
+      },
+      "Errors": {
+        "AmountPositive": "L'importo deve essere maggiore di zero",
+        "HoursNotNegative": "Le ore non possono essere negative",
+        "DescriptionRequired": "La descrizione è obbligatoria"
       },
       "Buttons": {
         "Cancel": "Annulla",

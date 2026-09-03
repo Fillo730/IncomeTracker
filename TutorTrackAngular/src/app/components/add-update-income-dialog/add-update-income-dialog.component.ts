@@ -78,6 +78,14 @@ export class AddUpdateIncomeDialogComponent implements OnInit {
     return this.incomeUpdate.categoryKey === TUTORING_CATEGORY_KEY;
   }
 
+  get isFormValid(): boolean {
+    return !!this.incomeUpdate.amount
+      && this.incomeUpdate.amount > 0
+      && !!this.incomeUpdate.categoryKey
+      && !!this.incomeUpdate.description?.trim()
+      && (this.incomeUpdate.hours == null || this.incomeUpdate.hours >= 0);
+  }
+
   loadStudents(): void {
     this.studentService.getStudents().subscribe(res => {
       if (res.success) {

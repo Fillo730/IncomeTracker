@@ -1,0 +1,37 @@
+<div class="login-container background-color-custom-ligher">
+  <mat-card class="login-card card-border-theme background-color-custom">
+    <mat-card-content>
+      <div class="login-header text-center mb-4">
+        <mat-icon class="login-icon">lock</mat-icon>
+        <h2 class="text-color">{{ "Login.Title" | translate }}</h2>
+        <p class="text-color opacity-7">{{ "Login.Subtitle" | translate }}</p>
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "Login.Labels.Username" | translate }}</mat-label>
+          <input matInput [(ngModel)]="username" name="username" autocomplete="username" required>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>{{ "Login.Labels.Password" | translate }}</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" autocomplete="current-password" required>
+          <mat-icon matSuffix>key</mat-icon>
+        </mat-form-field>
+
+        @if (errorMessage()) {
+          <div class="error-message mb-3">{{ errorMessage() }}</div>
+        }
+
+        <button mat-flat-button color="primary" type="submit" class="w-100 login-button" [disabled]="isLoading() || !username.trim() || !password">
+          @if (isLoading()) {
+            <mat-spinner diameter="20" class="d-inline-block"></mat-spinner>
+          } @else {
+            {{ "Login.Buttons.Submit" | translate }}
+          }
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

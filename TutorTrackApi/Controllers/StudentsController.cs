@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TutorTrackApi.Dtos;
 using TutorTrackApi.Dtos.Enum;
@@ -8,6 +9,7 @@ namespace TutorTrackApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class StudentsController(IStudentService studentService) : BaseController
 {
     private readonly IStudentService _studentService = studentService;

@@ -1,9 +1,14 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using TutorTrackApi.Data;
+using TutorTrackApi.Helpers;
 using TutorTrackApi.IMappers;
 using TutorTrackApi.IRepositories;
 using TutorTrackApi.IServices;
 using TutorTrackApi.Mapper;
+using TutorTrackApi.Models;
 using TutorTrackApi.Repositories;
 using TutorTrackApi.Services;
 
@@ -44,7 +49,32 @@ builder.Services.AddScoped<IStudentMapper, StudentMapper>();
 builder.Services.AddScoped<IIncomeGoalRepository, IncomeGoalRepository>();
 builder.Services.AddScoped<IIncomeGoalService, IncomeGoalService>();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
+
 builder.Services.AddSwaggerGen();
+
+var jwtSection = builder.Configuration.GetSection("Jwt");
+var jwtKey = jwtSection["Key"] ?? throw new InvalidOperationException(
+    "Jwt:Key non configurata. Impostala con: dotnet user-secrets set \"Jwt:Key\" \"<chiave-segreta>\"");
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSection["Issuer"],
+            ValidAudience = jwtSection["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -59,7 +89,41 @@ app.UseCors("AngularDevPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
+await SeedDefaultUserAsync(app);
+
 app.Run();
+
+static async Task SeedDefaultUserAsync(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var userRepository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
+
+    if (await userRepository.AnyAsync())
+    {
+        return;
+    }
+
+    var username = app.Configuration["Auth:Username"];
+    var password = app.Configuration["Auth:Password"];
+
+    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+    {
+        app.Logger.LogWarning(
+            "Nessun utente presente e Auth:Username/Auth:Password non configurati: il login non sarà possibile finché non li imposti con dotnet user-secrets.");
+        return;
+    }
+
+    await userRepository.AddAsync(new User
+    {
+        Username = username,
+        PasswordHash = PasswordHasher.Hash(password)
+    });
+
+    await userRepository.SaveChangesAsync();
+
+    app.Logger.LogInformation("Utente iniziale '{Username}' creato.", username);
+}

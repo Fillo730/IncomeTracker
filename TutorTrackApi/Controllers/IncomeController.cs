@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TutorTrackApi.Dtos;
 using TutorTrackApi.Dtos.Enum;
@@ -12,7 +13,8 @@ namespace TutorTrackApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class IncomesController(IIncomeService incomeService) : BaseController 
+[Authorize]
+public class IncomesController(IIncomeService incomeService) : BaseController
 {
     private readonly IIncomeService _incomeService = incomeService;
 
@@ -185,6 +187,13 @@ public async Task<ActionResult> GetPaged(
     [HttpPost]
     public async Task<ActionResult> Create([FromBody] IncomeEntryDto entry)
     {
+        var validationError = ValidateEntry(entry);
+
+        if (validationError is not null)
+        {
+            return Ok(ApiResponse<IncomeEntryDto>.Fail(AppStatusCode.ValidationError, validationError));
+        }
+
         try
         {
             var success = await _incomeService.CreateIncomeAsync(entry);
@@ -207,6 +216,13 @@ public async Task<ActionResult> GetPaged(
     [HttpPut("{id}")]
     public async Task<ActionResult> Update(int id, [FromBody] IncomeEntryDto entry)
     {
+        var validationError = ValidateEntry(entry);
+
+        if (validationError is not null)
+        {
+            return Ok(ApiResponse<IncomeEntryDto>.Fail(AppStatusCode.ValidationError, validationError));
+        }
+
         try
         {
             var success = await _incomeService.UpdateIncomeAsync(id, entry);
@@ -246,5 +262,25 @@ public async Task<ActionResult> GetPaged(
             return Ok(ApiResponse<bool>.Fail(
                 AppStatusCode.DatabaseError, ex.Message));
         }
+    }
+
+    private static string? ValidateEntry(IncomeEntryDto entry)
+    {
+        if (string.IsNullOrWhiteSpace(entry.Description))
+        {
+            return "La descrizione è obbligatoria";
+        }
+
+        if (entry.Amount <= 0)
+        {
+            return "L'importo deve essere maggiore di zero";
+        }
+
+        if (entry.Hours is not null && entry.Hours < 0)
+        {
+            return "Le ore non possono essere negative";
+        }
+
+        return null;
     }
 }

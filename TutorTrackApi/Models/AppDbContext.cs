@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<IncomeEntry> IncomeEntries { get; set; } = null!;
     public DbSet<Student> Students { get; set; } = null!;
     public DbSet<IncomeGoal> IncomeGoals { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,6 +38,11 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<IncomeGoal>(entity => {
             entity.Property(e => e.MonthlyAmount).HasConversion<double>();
+            entity.Property(e => e.AnnualAmount).HasConversion<double>();
+        });
+
+        modelBuilder.Entity<User>(entity => {
+            entity.HasIndex(e => e.Username).IsUnique();
         });
 
         modelBuilder.Entity<Language>().HasData(

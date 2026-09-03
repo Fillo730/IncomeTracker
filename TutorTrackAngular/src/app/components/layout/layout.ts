@@ -21,6 +21,7 @@ import { ThemeSelectorComponent } from '../theme-selector/theme-selector.compone
 //Services
 import { ThemeService } from '../../services/theme.service';
 import { NavigationService } from '../../services/navigation.service';
+import { AuthService } from '../../services/api/auth.service';
 
 @Component({
   selector: 'layout-component',
@@ -45,5 +46,10 @@ import { NavigationService } from '../../services/navigation.service';
 export class LayoutComponent {
   public themeService = inject(ThemeService);
   public navigationService = inject(NavigationService);
+  private authService = inject(AuthService);
 
+  onLogout(): void {
+    this.authService.logout();
+    this.navigationService.goToLogin();
+  }
 }

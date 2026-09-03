@@ -1,10 +1,10 @@
-<h2 mat-dialog-title>{{ "HomePage.Goal.DialogTitle" | translate }}</h2>
+<h2 mat-dialog-title>{{ (data.title ?? "HomePage.Goal.DialogTitle") | translate }}</h2>
 
 <mat-dialog-content class="d-flex flex-column align-items-center">
-    <div class="mb-3 text-center">{{ "HomePage.Goal.DialogText" | translate }}</div>
+    <div class="mb-3 text-center">{{ (data.text ?? "HomePage.Goal.DialogText") | translate }}</div>
 
     <mat-form-field appearance="outline" class="w-100">
-        <mat-label>{{ "HomePage.Goal.DialogLabel" | translate }}</mat-label>
+        <mat-label>{{ (data.label ?? "HomePage.Goal.DialogLabel") | translate }}</mat-label>
         <input matInput type="number" [(ngModel)]="amount" placeholder="0.00" (keyup.enter)="onSaveClick()">
         <mat-icon matSuffix>euro</mat-icon>
     </mat-form-field>

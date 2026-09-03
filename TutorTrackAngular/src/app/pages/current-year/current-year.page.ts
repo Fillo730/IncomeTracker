@@ -3,14 +3,20 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 
 import { StateHandlerComponent } from '../../components/state-handler/state-handler.component';
+import { SetGoalDialogComponent } from '../../components/set-goal-dialog/set-goal-dialog.component';
 
 import { IncomeService } from '../../services/api/income-entries.service';
+import { IncomeGoalService } from '../../services/api/income-goal.service';
 import { ThemeService } from '../../services/theme.service';
+import { ToastService } from '../../services/toast.service';
 import { ChartOptionsHelper } from '../../helpers/ChartOptions.helper';
 import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
@@ -23,16 +29,19 @@ import { DateHelper } from '../../helpers/Date.helper';
 @Component({
   selector: 'current-year-page',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, TranslatePipe, BaseChartDirective, StateHandlerComponent],
+  imports: [CommonModule, MatCardModule, MatIconModule, MatButtonModule, MatProgressBarModule, MatTooltipModule, MatDialogModule, TranslatePipe, BaseChartDirective, StateHandlerComponent],
   providers: [provideCharts(withDefaultRegisterables())],
   templateUrl: './current-year.page.html',
   styleUrl: './current-year.page.css'
 })
 export class CurrentYearPage implements OnInit {
   private readonly incomeService = inject(IncomeService);
+  private readonly incomeGoalService = inject(IncomeGoalService);
   private readonly themeService = inject(ThemeService);
   private readonly translate = inject(TranslateService);
   private readonly languageService = inject(LanguageService);
+  private readonly toastService = inject(ToastService);
+  private readonly dialog = inject(MatDialog);
 
   public isLoading = signal<boolean>(false);
   public isError = signal<boolean>(false);
@@ -46,6 +55,8 @@ export class CurrentYearPage implements OnInit {
   public studentHoursChartData: ChartConfiguration<'bar'>['data'] = { labels: [], datasets: [] };
 
   public hasStudentData = signal<boolean>(false);
+  public annualGoal = signal<number>(0);
+  public totalYearIncome = signal<number>(0);
 
   public pieChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getPieChartOptions();
   public barChartOptions: ChartConfiguration['options'] = ChartOptionsHelper.getLineBarChartOptions();
@@ -92,17 +103,61 @@ export class CurrentYearPage implements OnInit {
       yearlyHours: this.incomeService.getMonthlyHoursForYear(year),
       yearlyCategory: this.incomeService.getIncomeByCategoryForYear(year, this.languageService.language()),
       studentIncome: this.incomeService.getIncomeByStudentForYear(year),
+      goal: this.incomeGoalService.getAnnualGoal(),
     }).subscribe({
       next: (res) => {
         this.setUpMonthlyIncomeChart(res.yearlyIncome.data);
         this.setUpMonthlyHoursChart(res.yearlyHours.data);
         this.setUpYearCategoryChart(res.yearlyCategory.data);
         this.setUpStudentCharts(res.studentIncome.data);
+
+        const total = (res.yearlyIncome.data ?? []).reduce((sum, m) => sum + m.totalAmount, 0);
+        this.totalYearIncome.set(total);
+
+        if (res.goal.success) {
+          this.annualGoal.set(res.goal.data.annualAmount);
+        }
+
         this.isLoading.set(false);
       },
       error: () => {
         this.isError.set(true);
         this.isLoading.set(false);
+      }
+    });
+  }
+
+  public goalProgressPercent(): number {
+    const goal = this.annualGoal();
+    const income = this.totalYearIncome();
+
+    if (goal <= 0) {
+      return 0;
+    }
+
+    return Math.min(100, Math.round((income / goal) * 100));
+  }
+
+  public openGoalDialog(): void {
+    const dialogRef = this.dialog.open(SetGoalDialogComponent, {
+      width: '400px',
+      data: {
+        currentAmount: this.annualGoal(),
+        title: 'HomePage.Goal.AnnualDialogTitle',
+        text: 'HomePage.Goal.AnnualDialogText',
+        label: 'HomePage.Goal.AnnualDialogLabel'
+      },
+      panelClass: 'dialog-with-theme'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined && result !== null) {
+        this.incomeGoalService.setAnnualGoal(result).subscribe(res => {
+          if (res.success) {
+            this.annualGoal.set(res.data.annualAmount);
+            this.toastService.success(this.translate.instant('HomePage.Goal.UpdateSuccess'));
+          }
+        });
       }
     });
   }

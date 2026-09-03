@@ -23,6 +23,10 @@ export class NavigationService {
     this.router.navigate(['/students']);
   }
 
+  public goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
   public navigateTo(path: string[]): void {
     this.router.navigate(path);
   }

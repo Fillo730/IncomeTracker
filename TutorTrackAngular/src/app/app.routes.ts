@@ -7,11 +7,17 @@ import { LayoutComponent } from './components/layout/layout';
 import { AddEntryPage } from './pages/add-entry/add-entry.page';
 import { CurrentYearPage } from './pages/current-year/current-year.page';
 import { StudentsPage } from './pages/students/students.page';
+import { LoginPage } from './pages/login/login.page';
+
+//Guards
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
+    { path: 'login', component: LoginPage },
     {
         path: '',
         component: LayoutComponent,
+        canActivate: [authGuard],
         children: [
             { path: 'current-month', component: CurrentMonthPage },
             { path: 'current-year', component: CurrentYearPage },

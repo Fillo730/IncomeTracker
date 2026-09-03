@@ -29,6 +29,28 @@
           </div>
         </div>
 
+        <mat-card class="goal-card card-border-theme background-color-custom-ligher mb-4">
+          <mat-card-content>
+            <div class="goal-header">
+              <span class="text-color goal-label">{{ "HomePage.Goal.AnnualLabel" | translate }}</span>
+              <button mat-icon-button (click)="openGoalDialog()" [matTooltip]="'HomePage.Goal.EditTooltip' | translate">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+
+            @if (annualGoal() > 0) {
+              <mat-progress-bar mode="determinate" [value]="goalProgressPercent()"></mat-progress-bar>
+              <div class="goal-footer text-color opacity-7">
+                {{ totalYearIncome() | currency: 'EUR' }} / {{ annualGoal() | currency: 'EUR' }} ({{ goalProgressPercent() }}%)
+              </div>
+            } @else {
+              <div class="goal-footer text-color opacity-7">
+                {{ "HomePage.Goal.NotSet" | translate }}
+              </div>
+            }
+          </mat-card-content>
+        </mat-card>
+
         <div class="charts-row mt-4">
           <mat-card class="chart-container half-width card-border-theme background-color-custom-ligher">
             <mat-card-content class="chart-content-with-title">

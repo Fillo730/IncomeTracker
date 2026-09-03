@@ -14,6 +14,9 @@
       <a mat-list-item (click)="navigationService.goToStudents()">
         <span class="text-color">{{ "Header.Navigation.Students" | translate }}</span>
       </a>
+      <a mat-list-item (click)="onLogout()">
+        <span class="text-color">{{ "Header.Navigation.Logout" | translate }}</span>
+      </a>
     </mat-nav-list>
 
     <div class="d-flex flex-row align-items-center p-3 gap-3 border-top">
@@ -33,6 +36,7 @@
         <button mat-menu-item (click)="navigationService.goToCurrentYear()">{{ "Header.Navigation.CurrentYear" | translate }}</button>
         <button mat-menu-item (click)="navigationService.goToAddEntry()">{{ "Header.Navigation.AddEntry" | translate }}</button>
         <button mat-menu-item (click)="navigationService.goToStudents()">{{ "Header.Navigation.Students" | translate }}</button>
+        <button mat-menu-item (click)="onLogout()">{{ "Header.Navigation.Logout" | translate }}</button>
         <div class="p-2 d-flex flex-row align-items-center gap-2 border-top">
            <language-selector></language-selector>
            <theme-selector-component [isDark]="themeService.isDark()" (toggleTheme)="themeService.toggleTheme()"></theme-selector-component>

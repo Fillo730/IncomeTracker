@@ -26,6 +26,27 @@
     gap: 4px;
 }
 
+.goal-card {
+    box-shadow: none !important;
+}
+
+.goal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.goal-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.goal-footer {
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
 .section-divider {
     border: 0;
     border-top: 1px solid var(--border-start);

@@ -4,7 +4,22 @@
       "Dashboard": "Current Month",
       "CurrentYear": "Current Year",
       "AddEntry": "Add Entry",
-      "Students": "Students"
+      "Students": "Students",
+      "Logout": "Logout"
+    }
+  },
+  "Login": {
+    "Title": "TutorTrack",
+    "Subtitle": "Sign in to continue",
+    "Labels": {
+      "Username": "Username",
+      "Password": "Password"
+    },
+    "Buttons": {
+      "Submit": "Sign in"
+    },
+    "Errors": {
+      "Generic": "Login error. Please try again."
     }
   },
   "HomePage": {
@@ -44,11 +59,15 @@
     },
     "Goal": {
       "Label": "Monthly Goal",
+      "AnnualLabel": "Annual Goal",
       "NotSet": "No goal set",
       "EditTooltip": "Set goal",
       "DialogTitle": "Set Monthly Goal",
       "DialogText": "Define how much you want to earn every month.",
       "DialogLabel": "Goal (€)",
+      "AnnualDialogTitle": "Set Annual Goal",
+      "AnnualDialogText": "Define how much you want to earn in total this year.",
+      "AnnualDialogLabel": "Goal (€)",
       "DialogCancel": "Cancel",
       "DialogSave": "Save",
       "UpdateSuccess": "Goal updated successfully!"
@@ -78,6 +97,11 @@
         "Category": "Category",
         "Description": "Description",
         "Notes": "Additional notes"
+      },
+      "Errors": {
+        "AmountPositive": "Amount must be greater than zero",
+        "HoursNotNegative": "Hours cannot be negative",
+        "DescriptionRequired": "Description is required"
       },
       "Buttons": {
         "Cancel": "Cancel",

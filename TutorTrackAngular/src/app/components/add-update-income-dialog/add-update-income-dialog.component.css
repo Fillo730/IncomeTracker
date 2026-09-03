@@ -16,3 +16,7 @@ div[innerHTML] {
 textarea {
     resize: none;
 }
+
+.error-hint {
+    color: #f44336;
+}

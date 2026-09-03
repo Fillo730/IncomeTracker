@@ -30,7 +30,12 @@ export class SetGoalDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<SetGoalDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { currentAmount: number }
+    @Inject(MAT_DIALOG_DATA) public data: {
+      currentAmount: number,
+      title?: string,
+      text?: string,
+      label?: string
+    }
   ) {
     this.amount = data.currentAmount ?? 0;
   }

@@ -5,14 +5,20 @@
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Amount" | translate }}</mat-label>
-        <input matInput type="number" [(ngModel)]="incomeUpdate.amount" placeholder="0.00">
+        <input matInput type="number" min="0.01" step="0.01" [(ngModel)]="incomeUpdate.amount" placeholder="0.00">
         <mat-icon matSuffix>euro</mat-icon>
+        @if (incomeUpdate.amount != null && incomeUpdate.amount <= 0) {
+            <mat-hint class="error-hint">{{ "Incomes.Dialog.Errors.AmountPositive" | translate }}</mat-hint>
+        }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Hours" | translate }}</mat-label>
-        <input matInput type="number" [(ngModel)]="incomeUpdate.hours" placeholder="0">
+        <input matInput type="number" min="0" [(ngModel)]="incomeUpdate.hours" placeholder="0">
         <mat-icon matSuffix>schedule</mat-icon>
+        @if (incomeUpdate.hours != null && incomeUpdate.hours < 0) {
+            <mat-hint class="error-hint">{{ "Incomes.Dialog.Errors.HoursNotNegative" | translate }}</mat-hint>
+        }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="w-100">
@@ -67,15 +73,18 @@
 
     <mat-form-field appearance="outline" class="w-100">
         <mat-label>{{ "Incomes.Dialog.Labels.Description" | translate }}</mat-label>
-        <textarea matInput [(ngModel)]="incomeUpdate.description" rows="3"></textarea>
+        <textarea matInput [(ngModel)]="incomeUpdate.description" rows="3" required></textarea>
+        @if (!incomeUpdate.description?.trim()) {
+            <mat-hint class="error-hint">{{ "Incomes.Dialog.Errors.DescriptionRequired" | translate }}</mat-hint>
+        }
     </mat-form-field>
 </mat-dialog-content>
 
-<mat-dialog-actions align="center"> 
+<mat-dialog-actions align="center">
     <button mat-button (click)="onNoClick()">
         {{ "Incomes.Dialog.Buttons.Cancel" | translate }}
     </button>
-    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!incomeUpdate.amount || !incomeUpdate.categoryKey">
+    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="!isFormValid">
         {{ (incomeUpdate.id ? "Incomes.Dialog.Buttons.Update" : "Incomes.Dialog.Buttons.Save") | translate }}
     </button>
 </mat-dialog-actions>

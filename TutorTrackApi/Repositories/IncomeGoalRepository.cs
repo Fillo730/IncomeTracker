@@ -29,4 +29,20 @@ public class IncomeGoalRepository(AppDbContext context) : IIncomeGoalRepository
 
         await _context.SaveChangesAsync();
     }
+
+    public async Task SetAnnualAmountAsync(decimal amount)
+    {
+        var existing = await _context.IncomeGoals.FirstOrDefaultAsync();
+
+        if (existing is null)
+        {
+            await _context.IncomeGoals.AddAsync(new IncomeGoal { AnnualAmount = amount });
+        }
+        else
+        {
+            existing.AnnualAmount = amount;
+        }
+
+        await _context.SaveChangesAsync();
+    }
 }
