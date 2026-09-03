@@ -1,4 +1,9 @@
 <div class="login-container background-color-custom-ligher">
+  <div class="login-topbar">
+    <language-selector></language-selector>
+    <theme-selector-component [isDark]="themeService.isDark()" (toggleTheme)="themeService.toggleTheme()"></theme-selector-component>
+  </div>
+
   <mat-card class="login-card card-border-theme background-color-custom">
     <mat-card-content>
       <div class="login-header text-center mb-4">

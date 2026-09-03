@@ -4,6 +4,16 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
+  position: relative;
+}
+
+.login-topbar {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .login-card {

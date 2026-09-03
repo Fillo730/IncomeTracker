@@ -12,8 +12,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 //i18n
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
+//Components
+import { LanguageSelectorComponent } from '../../components/language-selector/language-selector.component';
+import { ThemeSelectorComponent } from '../../components/theme-selector/theme-selector.component';
+
 //Services
 import { AuthService } from '../../services/api/auth.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'login-page',
@@ -27,7 +32,9 @@ import { AuthService } from '../../services/api/auth.service';
     MatIconModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    TranslatePipe
+    TranslatePipe,
+    LanguageSelectorComponent,
+    ThemeSelectorComponent
   ],
   templateUrl: './login.page.html',
   styleUrl: './login.page.css'
@@ -36,6 +43,7 @@ export class LoginPage implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private translate = inject(TranslateService);
+  public themeService = inject(ThemeService);
 
   public username = '';
   public password = '';
