@@ -32,6 +32,27 @@
     flex-wrap: wrap;
 }
 
+.goal-card {
+    box-shadow: none !important;
+}
+
+.goal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.goal-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.goal-footer {
+    margin-top: 8px;
+    font-size: 0.85rem;
+}
+
 .charts-row {
     display: flex;
     width: 100%;

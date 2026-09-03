@@ -41,6 +41,9 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IStudentMapper, StudentMapper>();
 
+builder.Services.AddScoped<IIncomeGoalRepository, IncomeGoalRepository>();
+builder.Services.AddScoped<IIncomeGoalService, IncomeGoalService>();
+
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

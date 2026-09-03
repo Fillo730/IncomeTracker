@@ -17,6 +17,7 @@ export const API_BASE_URL = "http://localhost:5273/api";
 export const API_ENDPOINTS =  {
     INCOMES: "incomes",
     STUDENTS: "students",
+    INCOME_GOALS: "incomegoals",
     AUTH: "auth"
 } as const;
 

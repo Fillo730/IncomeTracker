@@ -41,6 +41,17 @@
       "HoursDataset": "Hours",
       "StudentIncome": "Income per Student",
       "StudentHours": "Hours per Student"
+    },
+    "Goal": {
+      "Label": "Monthly Goal",
+      "NotSet": "No goal set",
+      "EditTooltip": "Set goal",
+      "DialogTitle": "Set Monthly Goal",
+      "DialogText": "Define how much you want to earn every month.",
+      "DialogLabel": "Goal (€)",
+      "DialogCancel": "Cancel",
+      "DialogSave": "Save",
+      "UpdateSuccess": "Goal updated successfully!"
     }
   },
   "Incomes": {

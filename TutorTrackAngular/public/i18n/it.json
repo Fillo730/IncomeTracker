@@ -41,6 +41,17 @@
       "HoursDataset": "Ore",
       "StudentIncome": "Guadagno per Studente",
       "StudentHours": "Ore per Studente"
+    },
+    "Goal": {
+      "Label": "Obiettivo Mensile",
+      "NotSet": "Nessun obiettivo impostato",
+      "EditTooltip": "Imposta obiettivo",
+      "DialogTitle": "Imposta Obiettivo Mensile",
+      "DialogText": "Definisci quanto vuoi guadagnare ogni mese.",
+      "DialogLabel": "Obiettivo (€)",
+      "DialogCancel": "Annulla",
+      "DialogSave": "Salva",
+      "UpdateSuccess": "Obiettivo aggiornato con successo!"
     }
   },
   "Incomes": {

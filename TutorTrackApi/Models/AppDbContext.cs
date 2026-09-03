@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<IncomeTypeTranslation> IncomeTypeTranslations { get; set; } = null!;
     public DbSet<IncomeEntry> IncomeEntries { get; set; } = null!;
     public DbSet<Student> Students { get; set; } = null!;
+    public DbSet<IncomeGoal> IncomeGoals { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -32,6 +33,10 @@ public class AppDbContext : DbContext
                 .WithMany(s => s.Entries)
                 .HasForeignKey(e => e.StudentId)
                 .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<IncomeGoal>(entity => {
+            entity.Property(e => e.MonthlyAmount).HasConversion<double>();
         });
 
         modelBuilder.Entity<Language>().HasData(
