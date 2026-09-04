@@ -19,6 +19,7 @@ import { IncomeGoalService } from '../../services/api/income-goal.service';
 import { ThemeService } from '../../services/theme.service';
 import { ToastService } from '../../services/toast.service';
 import { ChartOptionsHelper } from '../../helpers/ChartOptions.helper';
+import { getCategoricalColors, getShuffledPalette } from '../../constants/chart-colors.config';
 import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
 import { IncomeEntry } from '../../models/IncomeEntry';
@@ -130,11 +131,13 @@ export class CurrentMonthPage implements OnInit {
       goal: this.incomeGoalService.getMonthlyGoal(),
     }).subscribe({
       next: (res) => {
+        const palette = getShuffledPalette(this.themeService.isDark());
+
         this.totalIncome.set(res.total.data);
         this.totalHoursWorked.set(res.hours.data);
         this.incomeForCategory.set(res.incomeCategory.data);
-        this.setUpPieChart(res.incomeCategory.data);
-        this.setUpEntriesChart(res.entries.data.items);
+        this.setUpPieChart(res.incomeCategory.data, palette);
+        this.setUpEntriesChart(res.entries.data.items, palette);
 
         if (res.goal.success) {
           this.monthlyGoal.set(res.goal.data.monthlyAmount);
@@ -180,10 +183,10 @@ export class CurrentMonthPage implements OnInit {
   }
 
   refreshAllCharts(currentMonth: any[], allData: any[]): void {
-    this.setUpPieChart(currentMonth);
+    this.setUpPieChart(currentMonth, getShuffledPalette(this.themeService.isDark()));
   }
 
-  private setUpPieChart(data: CategoryIncome[] | null): void {
+  private setUpPieChart(data: CategoryIncome[] | null, palette: string[]): void {
     if (!data || data.length === 0) {
       this.pieChartData = { labels: [], datasets: [] };
       return;
@@ -196,12 +199,12 @@ export class CurrentMonthPage implements OnInit {
       labels: categories,
       datasets: [{
         data: totals,
-        backgroundColor: ['#3f51b5', '#ff9800', '#4caf50', '#f44336', '#9c27b0']
+        backgroundColor: getCategoricalColors(categories.length, palette)
       }]
     };
   }
 
-  private setUpEntriesChart(entries: IncomeEntry[] | null): void {
+  private setUpEntriesChart(entries: IncomeEntry[] | null, palette: string[]): void {
     if (!entries || entries.length === 0) {
       this.entriesChartData = { labels: [], datasets: [] };
       return;
@@ -217,7 +220,7 @@ export class CurrentMonthPage implements OnInit {
       datasets: [{
         data: totals,
         label: this.translate.instant('HomePage.Labels.IncomeDataset'),
-        backgroundColor: '#3f51b5'
+        backgroundColor: palette[0]
       }]
     };
   }

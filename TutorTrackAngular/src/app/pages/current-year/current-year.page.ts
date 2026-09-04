@@ -18,6 +18,7 @@ import { IncomeGoalService } from '../../services/api/income-goal.service';
 import { ThemeService } from '../../services/theme.service';
 import { ToastService } from '../../services/toast.service';
 import { ChartOptionsHelper } from '../../helpers/ChartOptions.helper';
+import { getCategoricalColors, getShuffledPalette } from '../../constants/chart-colors.config';
 import { forkJoin } from 'rxjs';
 import { CategoryIncome } from '../../models/stats/CategoryIncome';
 import { MonthlyIncome } from '../../models/stats/MonthlyIncome';
@@ -25,11 +26,6 @@ import { MonthlyHours } from '../../models/stats/MonthlyHours';
 import { StudentIncome } from '../../models/stats/StudentIncome';
 import { LanguageService } from '../../services/language.service';
 import { DateHelper } from '../../helpers/Date.helper';
-
-const STUDENT_PIE_PALETTE = [
-  '#3f51b5', '#ff9800', '#4caf50', '#f44336', '#9c27b0',
-  '#00bcd4', '#8bc34a', '#e91e63', '#ffc107', '#795548'
-];
 
 @Component({
   selector: 'current-year-page',
@@ -112,10 +108,12 @@ export class CurrentYearPage implements OnInit {
       goal: this.incomeGoalService.getAnnualGoal(),
     }).subscribe({
       next: (res) => {
-        this.setUpMonthlyIncomeChart(res.yearlyIncome.data);
-        this.setUpMonthlyHoursChart(res.yearlyHours.data);
-        this.setUpYearCategoryChart(res.yearlyCategory.data);
-        this.setUpStudentCharts(res.studentIncome.data);
+        const palette = getShuffledPalette(this.themeService.isDark());
+
+        this.setUpMonthlyIncomeChart(res.yearlyIncome.data, palette);
+        this.setUpMonthlyHoursChart(res.yearlyHours.data, palette);
+        this.setUpYearCategoryChart(res.yearlyCategory.data, palette);
+        this.setUpStudentCharts(res.studentIncome.data, palette);
 
         const total = (res.yearlyIncome.data ?? []).reduce((sum, m) => sum + m.totalAmount, 0);
         this.totalYearIncome.set(total);
@@ -168,7 +166,7 @@ export class CurrentYearPage implements OnInit {
     });
   }
 
-  private setUpMonthlyIncomeChart(data: MonthlyIncome[] | null): void {
+  private setUpMonthlyIncomeChart(data: MonthlyIncome[] | null, palette: string[]): void {
     if (!data || data.length === 0) {
       this.monthlyIncomeChartData = { labels: [], datasets: [] };
       return;
@@ -183,12 +181,12 @@ export class CurrentYearPage implements OnInit {
       datasets: [{
         data: totals,
         label: this.translate.instant('HomePage.Labels.IncomeDataset'),
-        backgroundColor: '#3f51b5'
+        backgroundColor: palette[0]
       }]
     };
   }
 
-  private setUpMonthlyHoursChart(data: MonthlyHours[] | null): void {
+  private setUpMonthlyHoursChart(data: MonthlyHours[] | null, palette: string[]): void {
     if (!data || data.length === 0) {
       this.monthlyHoursChartData = { labels: [], datasets: [] };
       return;
@@ -203,12 +201,12 @@ export class CurrentYearPage implements OnInit {
       datasets: [{
         data: totals,
         label: this.translate.instant('HomePage.Labels.HoursDataset'),
-        backgroundColor: '#ff9800'
+        backgroundColor: palette[1]
       }]
     };
   }
 
-  private setUpStudentCharts(data: StudentIncome[] | null): void {
+  private setUpStudentCharts(data: StudentIncome[] | null, palette: string[]): void {
     if (!data || data.length === 0) {
       this.studentIncomeChartData = { labels: [], datasets: [] };
       this.studentHoursChartData = { labels: [], datasets: [] };
@@ -226,7 +224,7 @@ export class CurrentYearPage implements OnInit {
       datasets: [{
         data: data.map(d => d.totalAmount),
         label: this.translate.instant('HomePage.Labels.IncomeDataset'),
-        backgroundColor: '#4caf50'
+        backgroundColor: palette[2]
       }]
     };
 
@@ -235,7 +233,7 @@ export class CurrentYearPage implements OnInit {
       datasets: [{
         data: data.map(d => d.totalHours),
         label: this.translate.instant('HomePage.Labels.HoursDataset'),
-        backgroundColor: '#9c27b0'
+        backgroundColor: palette[6]
       }]
     };
 
@@ -243,12 +241,12 @@ export class CurrentYearPage implements OnInit {
       labels,
       datasets: [{
         data: data.map(d => d.totalAmount),
-        backgroundColor: labels.map((_, i) => STUDENT_PIE_PALETTE[i % STUDENT_PIE_PALETTE.length])
+        backgroundColor: getCategoricalColors(labels.length, palette)
       }]
     };
   }
 
-  private setUpYearCategoryChart(data: CategoryIncome[] | null): void {
+  private setUpYearCategoryChart(data: CategoryIncome[] | null, palette: string[]): void {
     if (!data || data.length === 0) {
       this.yearCategoryChartData = { labels: [], datasets: [] };
       return;
@@ -261,7 +259,7 @@ export class CurrentYearPage implements OnInit {
       labels: categories,
       datasets: [{
         data: totals,
-        backgroundColor: ['#3f51b5', '#ff9800', '#4caf50', '#f44336', '#9c27b0']
+        backgroundColor: getCategoricalColors(categories.length, palette)
       }]
     };
   }
