@@ -2,6 +2,9 @@
 import { LANGUAGES } from "../models/types/Language.model";
 import { THEMES } from "../models/types/Theme.model";
 
+//Environment
+import { environment } from "../../environments/environment";
+
 export const APP_CONFIG = {
     DEFAULT_LANGUAGE: LANGUAGES.ITALIANO,
     SUPPORTED_LANGUAGES: [LANGUAGES.ITALIANO, LANGUAGES.ENGLISH],
@@ -12,7 +15,7 @@ export const APP_CONFIG = {
     DEFAULT_THEME: THEMES.DARK,
 } as const;
 
-export const API_BASE_URL = "http://localhost:5273/api";
+export const API_BASE_URL = environment.apiBaseUrl;
 
 export const API_ENDPOINTS =  {
     INCOMES: "incomes",

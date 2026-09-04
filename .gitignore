@@ -19,6 +19,9 @@ appsettings.Development.json
 *.db-shm
 *.db-wal
 
+# --- Docker ---
+.env
+
 # --- IDE e Editor ---
 .vscode/
 .idea/

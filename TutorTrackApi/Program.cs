@@ -88,14 +88,27 @@ app.UseCors("AngularDevPolicy");
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapFallbackToFile("index.html");
+
+await MigrateDatabaseAsync(app);
 await SeedDefaultUserAsync(app);
 
 app.Run();
+
+static async Task MigrateDatabaseAsync(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    await db.Database.MigrateAsync();
+}
 
 static async Task SeedDefaultUserAsync(WebApplication app)
 {
