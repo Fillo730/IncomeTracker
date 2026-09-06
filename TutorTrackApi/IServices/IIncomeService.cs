@@ -1,6 +1,5 @@
 using TutorTrackApi.Models.Responses;
 using TutorTrackApi.Models;
-using TutorTrackApi.DTOs;
 using TutorTrackApi.Dtos.Stats;
 using TutorTrackApi.Dtos.Filters;
 using TutorTrackApi.Dtos;

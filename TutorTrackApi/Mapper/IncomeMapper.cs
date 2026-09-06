@@ -1,5 +1,4 @@
 using TutorTrackApi.Dtos;
-using TutorTrackApi.DTOs;
 using TutorTrackApi.IMappers;
 using TutorTrackApi.Models;
 

@@ -1,4 +1,4 @@
-namespace TutorTrackApi.DTOs;
+namespace TutorTrackApi.Dtos;
 
 public class IncomeEntryDto
 {

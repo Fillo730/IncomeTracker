@@ -1,7 +1,6 @@
 using TutorTrackApi.Dtos;
 using TutorTrackApi.Dtos.Filters;
 using TutorTrackApi.Dtos.Stats;
-using TutorTrackApi.DTOs;
 using TutorTrackApi.IMappers;
 using TutorTrackApi.IRepositories;
 using TutorTrackApi.IServices;
