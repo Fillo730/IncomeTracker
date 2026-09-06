@@ -1,0 +1,187 @@
+{
+  "Header": {
+    "Navigation": {
+      "Dashboard": "Current Month",
+      "CurrentYear": "Current Year",
+      "AddEntry": "Add Entry",
+      "Students": "Students",
+      "Logout": "Logout"
+    }
+  },
+  "Login": {
+    "Title": "IncomeTracker",
+    "Subtitle": "Sign in to continue",
+    "Labels": {
+      "Username": "Username",
+      "Password": "Password"
+    },
+    "Buttons": {
+      "Submit": "Sign in"
+    },
+    "Errors": {
+      "Generic": "Login error. Please try again."
+    }
+  },
+  "HomePage": {
+    "Loading": {
+      "Message": "Loading..."
+    },
+    "Error": {
+      "Title": "An error occurred",
+      "Message": "Unable to load dashboard data.",
+      "Retry": "Retry"
+    },
+    "Sections": {
+      "ThisMonth": "Current Month Summary",
+      "History": "Historical Trend",
+      "CurrentYear": "Current Year",
+      "PreviousMonth": "Previous month",
+      "NextMonth": "Next month",
+      "PreviousYear": "Previous year",
+      "NextYear": "Next year",
+      "Students": "Student Statistics"
+    },
+    "Stats": {
+      "TotalCurrentMonth": "Total Income",
+      "WorkedHours": "Hours Worked",
+      "HourlyRate": "Average Hourly Rate"
+    },
+    "Labels": {
+      "RevenueHistory": "Revenue History",
+      "MonthlyIncome": "Monthly Revenue Trend",
+      "MonthlyHours": "Monthly Hours Worked",
+      "CategoryBreakdownYear": "Annual Category Breakdown",
+      "MonthEntries": "Month Entries Detail",
+      "IncomeDataset": "Revenue (€)",
+      "HoursDataset": "Hours",
+      "StudentIncome": "Income per Student",
+      "StudentHours": "Hours per Student",
+      "StudentRepetitionsBreakdown": "Tutoring Breakdown per Student"
+    },
+    "Goal": {
+      "Label": "Monthly Goal",
+      "AnnualLabel": "Annual Goal",
+      "NotSet": "No goal set",
+      "EditTooltip": "Set goal",
+      "DialogTitle": "Set Monthly Goal",
+      "DialogText": "Define how much you want to earn every month.",
+      "DialogLabel": "Goal (€)",
+      "AnnualDialogTitle": "Set Annual Goal",
+      "AnnualDialogText": "Define how much you want to earn in total this year.",
+      "AnnualDialogLabel": "Goal (€)",
+      "DialogCancel": "Cancel",
+      "DialogSave": "Save",
+      "UpdateSuccess": "Goal updated successfully!"
+    }
+  },
+  "Incomes": {
+    "Filters": {
+      "Title": "Filter Entries",
+      "LabelSearch": "Search description",
+      "Placeholder": "E.g: Analysis lesson...",
+      "LabelYear": "Year",
+      "LabelMonth": "Month",
+      "LabelCategory": "Category",
+      "LabelStudent": "Student",
+      "All": "All",
+      "ResetButton": "Reset Filters"
+    },
+    "Dialog": {
+      "TitleAdd": "Add New Entry",
+      "TitleUpdate": "Edit Entry",
+      "TextAdd": "Enter the details of the payment received.",
+      "TextUpdate": "Edit the details of the selected entry.",
+      "Labels": {
+        "Amount": "Amount (€)",
+        "Hours": "Hours worked",
+        "Date": "Date",
+        "Category": "Category",
+        "Description": "Description",
+        "Notes": "Additional notes"
+      },
+      "Errors": {
+        "AmountPositive": "Amount must be greater than zero",
+        "HoursNotNegative": "Hours cannot be negative",
+        "DescriptionRequired": "Description is required"
+      },
+      "Buttons": {
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Update": "Update"
+      }
+    },
+    "Stats": {
+      "ThisMonth": "Month Total",
+      "Update": "Update Statistics"
+    },
+    "Messages": {
+      "AddSuccess": "Entry added successfully!",
+      "UpdateSuccess": "Entry updated successfully!",
+      "DeleteSuccess": "Entry deleted successfully!",
+      "FiltersReset": "Filters reset",
+      "ErrorLoad": "Error loading data"
+    },
+    "Welcome": {
+      "Title": "No entries found"
+    },
+    "Buttons": {
+      "FirstEntry": "Add your first entry"
+    },
+    "Types": {
+      "TUTORING": "Tutoring",
+      "MOVING": "Moving",
+      "OTHER": "Other",
+      "SALARY": "Salary"
+    }
+  },
+  "Students": {
+    "Loading": "Loading students...",
+    "Labels": {
+      "Student": "Student",
+      "None": "None",
+      "NewStudentName": "New student name"
+    },
+    "Buttons": {
+      "AddNew": "Add student",
+      "FirstStudent": "Add your first student",
+      "ViewHistory": "View lesson history"
+    },
+    "Dialog": {
+      "TitleAdd": "Add New Student",
+      "TitleUpdate": "Edit Student",
+      "TextAdd": "Enter the new student's name.",
+      "TextUpdate": "Edit the selected student's name.",
+      "Labels": {
+        "Name": "Name"
+      },
+      "Buttons": {
+        "Cancel": "Cancel",
+        "Save": "Save",
+        "Update": "Update"
+      }
+    },
+    "Welcome": {
+      "Title": "No students found"
+    },
+    "Messages": {
+      "AddSuccess": "Student added successfully!",
+      "UpdateSuccess": "Student updated successfully!",
+      "DeleteSuccess": "Student deleted successfully!",
+      "ErrorLoad": "Error loading students"
+    }
+  },
+  "Months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  }
+}

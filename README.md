@@ -1,4 +1,4 @@
-# TutorTrack
+# IncomeTracker
 
 A full-stack income tracker built for private tutors, freelancers, and anyone with mixed income streams. Log entries, tag them by category and student, and track progress against monthly and annual goals — with a dashboard that turns it all into charts.
 
@@ -30,13 +30,13 @@ This is a personal project I use to track my own tutoring income. It's shared he
 
 ## Tech stack
 
-**Backend** (`TutorTrackApi/`)
+**Backend** (`IncomeTrackerApi/`)
 - ASP.NET Core 8 Web API
 - Entity Framework Core 8 + SQLite
 - JWT Bearer authentication, PBKDF2 password hashing
 - Swagger (development only)
 
-**Frontend** (`TutorTrackAngular/`)
+**Frontend** (`IncomeTrackerAngular/`)
 - Angular 21 (standalone components)
 - Angular Material / ng-bootstrap
 - ngx-translate for i18n
@@ -45,15 +45,15 @@ This is a personal project I use to track my own tutoring income. It's shared he
 ## Project structure
 
 ```
-TutorTrack/
-├── TutorTrackApi/        # ASP.NET Core Web API
+IncomeTracker/
+├── IncomeTrackerApi/      # ASP.NET Core Web API
 │   ├── Controllers/
 │   ├── Services/
 │   ├── Repositories/
 │   ├── Models/            # EF Core entities + AppDbContext
 │   ├── Migrations/        # EF Core migrations
 │   └── Dtos/
-├── TutorTrackAngular/     # Angular SPA
+├── IncomeTrackerAngular/  # Angular SPA
 │   └── src/app/
 │       ├── pages/
 │       ├── components/
@@ -77,7 +77,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-The app will be available at `http://localhost:8080`. On first boot it runs pending EF Core migrations automatically and seeds a single user from `AUTH_USERNAME` / `AUTH_PASSWORD`. The SQLite database lives in a named Docker volume (`tutortrack-data`), so it persists across container restarts.
+The app will be available at `http://localhost:8080`. On first boot it runs pending EF Core migrations automatically and seeds a single user from `AUTH_USERNAME` / `AUTH_PASSWORD`. The SQLite database lives in a named Docker volume (`incometracker-data`), so it persists across container restarts.
 
 ### Option B — Local development
 
@@ -86,12 +86,12 @@ Requires the .NET 8 SDK and Node.js 20+.
 **Backend**
 
 ```bash
-cd TutorTrackApi
+cd IncomeTrackerApi
 
 # Store secrets outside of source control (dotnet user-secrets)
 dotnet user-secrets set "Jwt:Key" "$(openssl rand -base64 48)"
-dotnet user-secrets set "Jwt:Issuer" "TutorTrackApi"
-dotnet user-secrets set "Jwt:Audience" "TutorTrackAngular"
+dotnet user-secrets set "Jwt:Issuer" "IncomeTrackerApi"
+dotnet user-secrets set "Jwt:Audience" "IncomeTrackerAngular"
 dotnet user-secrets set "Auth:Username" "your-username"
 dotnet user-secrets set "Auth:Password" "your-password"
 
@@ -99,13 +99,13 @@ dotnet run
 ```
 
 The API starts on `http://localhost:5273`. On startup it:
-1. Applies any pending EF Core migrations (`db.Database.MigrateAsync()`), creating `tutortrack.db` if it doesn't exist yet.
+1. Applies any pending EF Core migrations (`db.Database.MigrateAsync()`), creating the SQLite database file if it doesn't exist yet.
 2. Seeds one user from `Auth:Username` / `Auth:Password`, but only if the `Users` table is empty — it won't touch an existing account.
 
 **Frontend**
 
 ```bash
-cd TutorTrackAngular
+cd IncomeTrackerAngular
 npm install
 ng serve
 ```
@@ -114,12 +114,12 @@ Open `http://localhost:4200`. The dev build calls the API at `http://localhost:5
 
 ### Database migrations
 
-Migrations live in `TutorTrackApi/Migrations/` and are applied automatically at startup — no manual `dotnet ef database update` step is needed to run the app.
+Migrations live in `IncomeTrackerApi/Migrations/` and are applied automatically at startup — no manual `dotnet ef database update` step is needed to run the app.
 
 To add a new migration after changing an entity or `AppDbContext`:
 
 ```bash
-cd TutorTrackApi
+cd IncomeTrackerApi
 dotnet ef migrations add <MigrationName>
 ```
 

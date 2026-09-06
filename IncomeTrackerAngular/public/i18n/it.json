@@ -1,0 +1,187 @@
+{
+  "Header": {
+    "Navigation": {
+      "Dashboard": "Mese Corrente",
+      "CurrentYear": "Anno Corrente",
+      "AddEntry": "Aggiungi Entrata",
+      "Students": "Studenti",
+      "Logout": "Esci"
+    }
+  },
+  "Login": {
+    "Title": "IncomeTracker",
+    "Subtitle": "Accedi per continuare",
+    "Labels": {
+      "Username": "Username",
+      "Password": "Password"
+    },
+    "Buttons": {
+      "Submit": "Accedi"
+    },
+    "Errors": {
+      "Generic": "Errore durante l'accesso. Riprova."
+    }
+  },
+  "HomePage": {
+    "Loading": {
+      "Message": "Caricamento in corso..."
+    },
+    "Error": {
+      "Title": "Si è verificato un errore",
+      "Message": "Impossibile caricare i dati della dashboard.",
+      "Retry": "Riprova"
+    },
+    "Sections": {
+      "ThisMonth": "Riepilogo Mese Corrente",
+      "History": "Andamento Storico",
+      "CurrentYear": "Anno Corrente",
+      "PreviousMonth": "Mese precedente",
+      "NextMonth": "Mese successivo",
+      "PreviousYear": "Anno precedente",
+      "NextYear": "Anno successivo",
+      "Students": "Statistiche Studenti"
+    },
+    "Stats": {
+      "TotalCurrentMonth": "Incasso Totale",
+      "WorkedHours": "Ore Lavorate",
+      "HourlyRate": "Tariffa Oraria Media"
+    },
+    "Labels": {
+      "RevenueHistory": "Storico Ricavi",
+      "MonthlyIncome": "Andamento Ricavi Mensili",
+      "MonthlyHours": "Andamento Ore Lavorate",
+      "CategoryBreakdownYear": "Ripartizione Annuale per Categoria",
+      "MonthEntries": "Dettaglio Entrate del Mese",
+      "IncomeDataset": "Ricavi (€)",
+      "HoursDataset": "Ore",
+      "StudentIncome": "Guadagno per Studente",
+      "StudentHours": "Ore per Studente",
+      "StudentRepetitionsBreakdown": "Ripartizione Ripetizioni per Studente"
+    },
+    "Goal": {
+      "Label": "Obiettivo Mensile",
+      "AnnualLabel": "Obiettivo Annuale",
+      "NotSet": "Nessun obiettivo impostato",
+      "EditTooltip": "Imposta obiettivo",
+      "DialogTitle": "Imposta Obiettivo Mensile",
+      "DialogText": "Definisci quanto vuoi guadagnare ogni mese.",
+      "DialogLabel": "Obiettivo (€)",
+      "AnnualDialogTitle": "Imposta Obiettivo Annuale",
+      "AnnualDialogText": "Definisci quanto vuoi guadagnare in totale quest'anno.",
+      "AnnualDialogLabel": "Obiettivo (€)",
+      "DialogCancel": "Annulla",
+      "DialogSave": "Salva",
+      "UpdateSuccess": "Obiettivo aggiornato con successo!"
+    }
+  },
+  "Incomes": {
+    "Filters": {
+      "Title": "Filtra Entrate",
+      "LabelSearch": "Cerca descrizione",
+      "Placeholder": "Es: Lezione analisi...",
+      "LabelYear": "Anno",
+      "LabelMonth": "Mese",
+      "LabelCategory": "Categoria",
+      "LabelStudent": "Studente",
+      "All": "Tutti",
+      "ResetButton": "Reset Filtri"
+    },
+    "Dialog": {
+      "TitleAdd": "Aggiungi Nuova Entrata",
+      "TitleUpdate": "Modifica Entrata",
+      "TextAdd": "Inserisci i dettagli del compenso ricevuto.",
+      "TextUpdate": "Modifica i dettagli dell'entrata selezionata.",
+      "Labels": {
+        "Amount": "Importo (€)",
+        "Hours": "Ore lavorate",
+        "Date": "Data",
+        "Category": "Categoria",
+        "Description": "Descrizione",
+        "Notes": "Note aggiuntive"
+      },
+      "Errors": {
+        "AmountPositive": "L'importo deve essere maggiore di zero",
+        "HoursNotNegative": "Le ore non possono essere negative",
+        "DescriptionRequired": "La descrizione è obbligatoria"
+      },
+      "Buttons": {
+        "Cancel": "Annulla",
+        "Save": "Salva",
+        "Update": "Aggiorna"
+      }
+    },
+    "Stats": {
+      "ThisMonth": "Totale Mese",
+      "Update": "Aggiorna Statistiche"
+    },
+    "Messages": {
+      "AddSuccess": "Entrata aggiunta con successo!",
+      "UpdateSuccess": "Entrata aggiornata con successo!",
+      "DeleteSuccess": "Entrata eliminata con successo!",
+      "FiltersReset": "Filtri resettati",
+      "ErrorLoad": "Errore nel caricamento dei dati"
+    },
+    "Welcome": {
+      "Title": "Nessuna entrata trovata"
+    },
+    "Buttons": {
+      "FirstEntry": "Aggiungi la tua prima entrata"
+    },
+    "Types": {
+      "TUTORING": "Ripetizioni",
+      "MOVING": "Traslochi",
+      "OTHER": "Altro",
+      "SALARY": "Stipendio"
+    }
+  },
+  "Students": {
+    "Loading": "Caricamento studenti...",
+    "Labels": {
+      "Student": "Studente",
+      "None": "Nessuno",
+      "NewStudentName": "Nome nuovo studente"
+    },
+    "Buttons": {
+      "AddNew": "Aggiungi studente",
+      "FirstStudent": "Aggiungi il tuo primo studente",
+      "ViewHistory": "Vedi storico lezioni"
+    },
+    "Dialog": {
+      "TitleAdd": "Aggiungi Nuovo Studente",
+      "TitleUpdate": "Modifica Studente",
+      "TextAdd": "Inserisci il nome del nuovo studente.",
+      "TextUpdate": "Modifica il nome dello studente selezionato.",
+      "Labels": {
+        "Name": "Nome"
+      },
+      "Buttons": {
+        "Cancel": "Annulla",
+        "Save": "Salva",
+        "Update": "Aggiorna"
+      }
+    },
+    "Welcome": {
+      "Title": "Nessuno studente trovato"
+    },
+    "Messages": {
+      "AddSuccess": "Studente aggiunto con successo!",
+      "UpdateSuccess": "Studente aggiornato con successo!",
+      "DeleteSuccess": "Studente eliminato con successo!",
+      "ErrorLoad": "Errore nel caricamento degli studenti"
+    }
+  },
+  "Months": {
+    "1": "Gennaio",
+    "2": "Febbraio",
+    "3": "Marzo",
+    "4": "Aprile",
+    "5": "Maggio",
+    "6": "Giugno",
+    "7": "Luglio",
+    "8": "Agosto",
+    "9": "Settembre",
+    "10": "Ottobre",
+    "11": "Novembre",
+    "12": "Dicembre"
+  }
+}
