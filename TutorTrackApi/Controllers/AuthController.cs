@@ -8,9 +8,10 @@ namespace TutorTrackApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(IAuthService authService) : BaseController
+public class AuthController(IAuthService authService, ILogger<AuthController> logger) : BaseController
 {
     private readonly IAuthService _authService = authService;
+    private readonly ILogger<AuthController> _logger = logger;
 
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] LoginRequestDto request)
@@ -35,8 +36,9 @@ public class AuthController(IAuthService authService) : BaseController
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante il login per l'utente {Username}", request.Username);
             return Ok(ApiResponse<LoginResponseDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, "Si è verificato un errore durante l'accesso. Riprova più tardi."));
         }
     }
 }

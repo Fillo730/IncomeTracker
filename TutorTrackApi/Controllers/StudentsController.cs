@@ -10,9 +10,11 @@ namespace TutorTrackApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class StudentsController(IStudentService studentService) : BaseController
+public class StudentsController(IStudentService studentService, ILogger<StudentsController> logger) : BaseController
 {
     private readonly IStudentService _studentService = studentService;
+    private readonly ILogger<StudentsController> _logger = logger;
+    private const string GenericErrorMessage = "Si è verificato un errore. Riprova più tardi.";
 
     [HttpGet]
     public async Task<ActionResult> GetAll()
@@ -25,8 +27,9 @@ public class StudentsController(IStudentService studentService) : BaseController
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante il recupero degli studenti");
             return Ok(ApiResponse<IEnumerable<StudentDto>>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -47,8 +50,9 @@ public class StudentsController(IStudentService studentService) : BaseController
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante la creazione dello studente");
             return Ok(ApiResponse<StudentDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -69,8 +73,9 @@ public class StudentsController(IStudentService studentService) : BaseController
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante l'aggiornamento dello studente {StudentId}", id);
             return Ok(ApiResponse<StudentDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -91,8 +96,9 @@ public class StudentsController(IStudentService studentService) : BaseController
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante l'eliminazione dello studente {StudentId}", id);
             return Ok(ApiResponse<bool>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 }

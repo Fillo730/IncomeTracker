@@ -10,9 +10,11 @@ namespace TutorTrackApi.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class IncomeGoalsController(IIncomeGoalService goalService) : BaseController
+public class IncomeGoalsController(IIncomeGoalService goalService, ILogger<IncomeGoalsController> logger) : BaseController
 {
     private readonly IIncomeGoalService _goalService = goalService;
+    private readonly ILogger<IncomeGoalsController> _logger = logger;
+    private const string GenericErrorMessage = "Si è verificato un errore. Riprova più tardi.";
 
     [HttpGet("monthly")]
     public async Task<ActionResult> GetMonthly()
@@ -25,8 +27,9 @@ public class IncomeGoalsController(IIncomeGoalService goalService) : BaseControl
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante il recupero dell'obiettivo mensile");
             return Ok(ApiResponse<IncomeGoalDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -47,8 +50,9 @@ public class IncomeGoalsController(IIncomeGoalService goalService) : BaseControl
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante l'aggiornamento dell'obiettivo mensile");
             return Ok(ApiResponse<IncomeGoalDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -63,8 +67,9 @@ public class IncomeGoalsController(IIncomeGoalService goalService) : BaseControl
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante il recupero dell'obiettivo annuale");
             return Ok(ApiResponse<AnnualIncomeGoalDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 
@@ -85,8 +90,9 @@ public class IncomeGoalsController(IIncomeGoalService goalService) : BaseControl
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Errore durante l'aggiornamento dell'obiettivo annuale");
             return Ok(ApiResponse<AnnualIncomeGoalDto>.Fail(
-                AppStatusCode.DatabaseError, ex.Message));
+                AppStatusCode.DatabaseError, GenericErrorMessage));
         }
     }
 }
